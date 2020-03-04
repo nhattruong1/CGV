@@ -1,0 +1,117 @@
+/* CSS Header */
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login{
+    text-transform: uppercase;
+}
+.login ul {
+    width: 900px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.login ul a{
+    margin-left: 10px;
+    color: #666;
+}
+.login ul a:hover{
+    text-decoration: none;
+    color: #666;
+}
+.header{
+    height: 120px;
+    width: 100%;
+    background: url(../img/bg-top.png)repeat-x scroll left bottom transparent;
+}
+
+.header-content{
+    display: flex;
+    width: 900px;
+    margin: 0 auto;
+}
+.header .header-content .header-content-logo {
+    margin: auto 0;
+    flex: 1;          
+    display: flex;
+    justify-content: flex-start;
+}
+.header .header-content .header-content-logo:hover{
+    opacity: 0.7;
+}
+.header .header-content .header-content-menu {
+    margin-top: 62px;
+    margin-right: 60px;
+}
+.header .header-content .header-content-buy{
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+.header .header-content ul a{
+    font-weight: bold;
+    line-height: 30px;
+    color: black;
+    padding-left: 20px
+}
+.header .header-content ul a:hover {
+    text-decoration: none
+}
+.header .header-content .header-content-search .input-container{
+    background-color: white
+}
+/* End CSS Header */
+
+/* CSS MENUBAR */
+.menubar{
+    width: 900px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.menubar ul {
+    padding: 0 10px;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    box-sizing: border-box;
+}
+.menubar ul a {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+}
+
+
+/* END CSS MENUBAR */
+
+/* SlideShow */
+.slideshow{
+    width: 100%;
+    background: url(../img/bg_c_bricks.png) repeat-x scroll left top transparent;
+    height: 450px;
+}
+.slideshow .slideshow-content{
+    width: 900px;
+    margin: 0 auto
+}
+/* End Show */
+
+/* Content */
+.content{
+    width: 900px;
+    margin: 30px auto;
+}
+.content .content-movie{
+}
+.content .content-movie .content-movie-title{
+
+}
+.content .content-movie .content-movie-title h2{
+    background: url(/img/h3_movie_selection.gif) no-repeat scroll center center / 406px 41px ;
+    text-indent: -99999px;
+    height: 41px;
+} 
+
+
+/* End Content */
