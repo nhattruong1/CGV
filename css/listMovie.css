@@ -1,0 +1,22 @@
+.listMovie-content {
+    width: 900px;
+    margin: 0 auto;
+}
+.listMovie-content .borderBottom-title{
+    margin-top: 15px;
+    border-top: 2.5px solid #000;
+}
+.listMovie-content .listMovie-content-list .row .col-md-4 {
+    margin-top: 20px;
+}
+.listMovie-content .listMovie-content-list .row .col-md-4 a img{
+    width: 100%;
+}
+
+.movie-info{
+    margin-bottom: 10px;
+}
+.movie-btn{
+    display: flex;
+    justify-content: space-between
+}

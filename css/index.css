@@ -104,7 +104,7 @@
 }
 .content .content-movie .content-movie-title h2{
     background: url(../img/h3_movie_selection.png) no-repeat scroll center center / 406px 41px ;
-    text-indent: -99999px;
+        text-indent: -99999px;
     height: 41px;
 } 
 .content .content-movie .content-movie-list{
@@ -176,8 +176,7 @@
     width: 900px;
     margin: 0 auto;
 }
-.footer .footer-info .row .col-md-2 a{
-}
+
 .footer .footer-info .row .col-md-2 a img{
     width: 100%;
 }
