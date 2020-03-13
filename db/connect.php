@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost","root","","tick  etbooking");
+$mysqli = new mysqli("localhost","root","","ticketbooking");
 
 // Check connection
 if ($mysqli -> connect_errno) {
