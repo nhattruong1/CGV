@@ -24,7 +24,7 @@
                     <img src="./img/kenhcine.gif" alt="">
                 </a>
             </ul>
-            <a class="header-content-buy" href="listMovie.html">
+            <a class="header-content-buy" href="?quanly=listmovies">
                 <img src="./img/mua-ve_ngay.png" alt="">
             </a>
         </div>
@@ -37,7 +37,7 @@
             <a href="">
                 <img src="./img/header-logo-1.png" alt="">
             </a>
-            <a href="listMovie.html">
+            <a href="?quanly=listmovies">
                 <img src="./img/header-logo-2.png" alt="">
             </a>
             <a href="">
@@ -49,7 +49,7 @@
             <a href="">
                 <img src="./img/header-logo-5.png" alt="">
             </a>
-            <a href="">
+            <a href="?quanly=listnews">
                 <img src="./img/header-logo-6.png" alt="">
             </a>
             <a href="">

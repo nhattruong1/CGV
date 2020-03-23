@@ -64,8 +64,7 @@
 /* CSS MENUBAR */
 .menubar{
     width: 900px;
-    margin: 0 auto;
-    margin-top: 10px;
+    margin: 10px auto 0;
 }
 .menubar ul {
     padding: 0 10px;

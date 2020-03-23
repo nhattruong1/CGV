@@ -1,5 +1,6 @@
 <?php 
-    include_once("db/connect.php")
+    include_once("db/connect.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/movieDetail.css">
+    <link rel="stylesheet" href="./css/listNews.css">
+    <link rel="stylesheet" href="./css/listMovie.css">
 </head>
 <body>
     <?php
@@ -27,9 +30,15 @@
 
         if($tam=='phim'){
             include('include/movieDetail.php');
+        }
+        else if($tam=='listnews'){
+            include('include/listNew.php');
+        }
+        else if($tam=='listmovies'){
+            include('include/listMovie.php');
         }else{
             include("include/slider.php");
-            include('include/home.php'); 
+            include('include/home.php');
         }
         include("include/footer.php");
     ?>
