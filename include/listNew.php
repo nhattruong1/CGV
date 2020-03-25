@@ -1,5 +1,5 @@
 <!-- Content -->
-<div class = "listnews">
+<div class = "listnews container">
     <div class="listnews-title">
         <p>
             s

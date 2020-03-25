@@ -1,6 +1,6 @@
 <!-- Footer -->
 <div class="footer">
-        <div class="footer-theater">
+        <div class="footer-theater container">
             <ul>
                 <a href="">
                     <img src="./img/1.png" alt="">
@@ -31,7 +31,7 @@
                 </a>
             </ul>
         </div>
-        <div class="footer-info">
+        <div class="footer-info container">
             <div class="row">
                 <div class="col-md-2">
                     <a href="https://www.tdtu.edu.vn/">

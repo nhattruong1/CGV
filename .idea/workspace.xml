@@ -12,6 +12,14 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -23,9 +31,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -45,7 +55,9 @@
       <updated>1584077999307</updated>
       <workItem from="1584078001563" duration="22276000" />
       <workItem from="1584369713319" duration="12211000" />
-      <workItem from="1584848563025" duration="13413000" />
+      <workItem from="1584848563025" duration="20888000" />
+      <workItem from="1584990606909" duration="822000" />
+      <workItem from="1585036815451" duration="89000" />
     </task>
     <servers />
   </component>
@@ -57,18 +69,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="390" y="0" key="#PHP/0.0.1366.728@0.0.1366.728" timestamp="1584078090220" />
-    <state x="517" y="288" key="NewPhpFileDialog" timestamp="1584949834361">
+    <state x="517" y="288" key="NewPhpFileDialog" timestamp="1584962532636">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="517" y="288" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1584949834361" />
+    <state x="517" y="288" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1584962532636" />
     <state x="184" y="7" key="SettingsEditor" timestamp="1584887383607">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="7" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1584887383607" />
-    <state x="379" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1584848568199">
+    <state x="379" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1585036854761">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1584848568199" />
+    <state x="379" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1585036854761" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1584901200852">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

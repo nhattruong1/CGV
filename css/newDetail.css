@@ -1,0 +1,13 @@
+.newDetail{
+    width: 900px;
+    margin: 0 auto;
+}
+.newDetail .newDetail-title h4{
+    color: red;
+}
+.newDetail .row .col-md-5 img{
+    width: 100%;
+}
+.newDetail .row {
+    margin: 30px 0;
+}

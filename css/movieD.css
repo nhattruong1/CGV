@@ -1,14 +1,7 @@
-.movie-detail{
-    width: 900px;
-    margin: 0 auto;
-}
+
 .movie-detail .title{
     border-bottom: 2px solid #000;
     margin: 20px 0
-}
-.movie-detail .movie-detail-content {
-    width: 900px;
-    margin: 0 auto;
 }
 .movie-detail .movie-detail-content .row .col-md-3 img{
     width: 100%;

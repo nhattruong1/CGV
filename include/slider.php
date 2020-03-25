@@ -1,6 +1,6 @@
     <!-- SlideShow -->
     <div class="slideshow">
-        <div id ="demo" class="slideshow-content carousel slide" data-ride="carousel">
+        <div id ="demo" class="slideshow-content carousel slide container" data-ride="carousel">
             <!-- Indicators -->
             <ul class="carousel-indicators">
                 <?php 
@@ -23,7 +23,7 @@
                     while($row_slider = mysqli_fetch_array($sql_slider)){
                 ?>
                 <a class="carousel-item <?php if($counter < 1){echo " active"; } ?>" href="">
-                <img src="<?php echo $row_slider['slideshow_img']?>" width="900" height="450">
+                <img class = "img-silder"src="<?php echo $row_slider['slideshow_img']?>" width="900" height="450">
                 <?php 
                     $counter ++;
                     }

@@ -6,9 +6,8 @@
     text-transform: uppercase;
 }
 .login ul {
-    width: 900px;
-    margin: 0 auto;
     text-align: right;
+    margin: 0
 }
 
 .login ul a{
@@ -27,25 +26,21 @@
 
 .header-content{
     display: flex;
-    width: 900px;
-    margin: 0 auto;
+    flex-direction: row;            
+    flex-wrap: nowrap;              
+    justify-content: space-between;
 }
-.header .header-content .header-content-logo {
+.header .header-content  .header-content-logo {
     margin: auto 0;
-    flex: 1;          
-    display: flex;
-    justify-content: flex-start;
 }
-.header .header-content .header-content-logo:hover{
+.header .header-content  .header-content-logo:hover{
     opacity: 0.7;
 }
-.header .header-content .header-content-menu {
+.header .header-content  .header-content-menu {
     margin-top: 62px;
-    margin-right: 60px;
 }
-.header .header-content .header-content-buy{
+.header .header-content  .header-content-buy{
     margin-top: 20px;
-    justify-content: flex-end;
 }
 .header .header-content ul a{
     font-weight: bold;
@@ -63,8 +58,7 @@
 
 /* CSS MENUBAR */
 .menubar{
-    width: 900px;
-    margin: 10px auto 0;
+    margin-top: 20px
 }
 .menubar ul {
     padding: 0 10px;
@@ -87,33 +81,38 @@
 /* SlideShow */
 .slideshow{
     width: 100%;
-    background: url(../img/bg_c_bricks.png) repeat-x scroll left top transparent;
-    height: 450px;
+    background: url(../img/bg_c_bricks.png);
 }
-.slideshow .slideshow-content{
-    width: 900px;
-    margin: 0 auto
+.img-silder {
+    width: 100%;
+    height: 100%;
 }
-/* End Show */
+/* End SlideShow */
 
 /* Content */
 .content{
-    width: 900px;
     margin: 30px auto;
 }
 .content .content-movie .content-movie-title h2{
     background: url(../img/h3_movie_selection.png) no-repeat scroll center center / 406px 41px ;
         text-indent: -99999px;
     height: 41px;
-} 
+}
 .content .content-movie .content-movie-list{
-    margin-top: 20px;
+    margin:20px auto;
 }
 
-.content .content-movie .content-movie-list .row .col-md-3 a img{
+.content .content-movie .content-movie-list .slider a img{
     width: 100%;
-    height: 100%;
+    padding: 2%
 }
+.slick-prev:before {
+    color: red;
+  }
+  
+.slick-next:before {
+    color: red;
+  }
 .content .content-event{
     margin-top: 20px;
 }
@@ -142,8 +141,6 @@
     border-bottom: 2px solid #000;
 }
 .footer .footer-theater{
-    width: 900px;
-    margin: 0 auto;
     margin-bottom: 30px
 }
 .footer .footer-theater ul {
@@ -159,23 +156,6 @@
     vertical-align: middle;
     text-align: center;
 }
-.footer .footer-theater ul a img{
-    filter: url(filters.svg#grayscale);
-    /* Firefox 3.5+ */
-    filter: gray;
-    /* IE6-9 */
-    -webkit-filter: grayscale(1);
-    /* Google Chrome & Safari 6+ */
-}
-.footer .footer-theater ul a img:hover{
-    filter: none;
-    -webkit-filter: none;
-}
-.footer .footer-info{
-    width: 900px;
-    margin: 0 auto;
-}
-
 .footer .footer-info .row .col-md-2 a img{
     width: 100%;
 }

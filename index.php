@@ -13,11 +13,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/movieDetail.css">
-    <link rel="stylesheet" href="./css/listNews.css">
-    <link rel="stylesheet" href="./css/listMovie.css">
+    <script src="https://kit.fontawesome.com/032571eeb1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/movieD.css">
+    <link rel="stylesheet" href="./css/listEvent.css">
+    <link rel="stylesheet" href="./css/listMovies.css">
+    <link rel="stylesheet" href="./css/newDetail.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
     <?php
@@ -36,11 +40,19 @@
         }
         else if($tam=='listmovies'){
             include('include/listMovie.php');
-        }else{
+        }
+        else if($tam=='newsDetail'){
+            include('include/newsDetail.php');
+        }
+        else{
             include("include/slider.php");
             include('include/home.php');
         }
         include("include/footer.php");
     ?>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js'></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>

@@ -1,10 +1,7 @@
-.listMovie-content {
-    width: 900px;
-    margin: 0 auto;
-}
+
 .listMovie-content .borderBottom-title{
     margin-top: 15px;
-    border-top: 2.5px solid #000;
+    border-top: 2.5px solid black;
 }
 .listMovie-content .listMovie-content-list .row .col-md-4 {
     margin-top: 20px;

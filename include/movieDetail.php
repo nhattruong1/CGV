@@ -8,9 +8,11 @@
 ?>
 <?php
     while($detail = mysqli_fetch_array($sql_detail)){
+        $myinput= $detail['movie_date']; 
+        $sqldate= date('d/m/Y',strtotime($myinput))
 ?>
 <!-- Content -->
-<div class="movie-detail">
+<div class="movie-detail container">
     <div class="title">
         <h3>Nội Dung Phim</h3>
     </div>
@@ -24,8 +26,8 @@
                 <hr>
                 <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Đạo Diễn:</span> <span><?php echo $detail['movie_directors']?></span></div>
                 <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Diễn Viên:</span> <span><?php echo $detail['movie_cast']?></span></div>
-                <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Thể Loại:</span> <span>test</span></div>
-                <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Khởi Chiếu:</span> <span><?php echo $detail['movie_date']?></span></div>
+                <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Thể Loại:</span> <span><?php echo $detail['movie_cate']?></span></div>
+                <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Khởi Chiếu:</span> <span><?php echo $sqldate?></span></div>
                 <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Thời Lượng:</span> <span><?php echo $detail['movie_time']?></span></div>
                 <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Ngôn Ngữ:</span> <span><?php echo $detail['movie_language']?></span></div>
                 <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Rated:</span> <span><?php echo $detail['movie_rate']?></span></div>

@@ -1,6 +1,6 @@
 
     <!-- login -->
-    <div class="login">
+    <div class="login container">
         <ul>
             <a href="">tuyển dụng</a>
             <a href="">liên hệ cgv</a>
@@ -11,7 +11,7 @@
     
     <!-- Header -->
     <div class="header">
-        <div class="header-content">
+        <div class="header-content container">
             <a class="header-content-logo" href="index.php">
                 <img src="https://www.cgv.vn/skin/frontend/cgv/default/images/cgvlogo.png" alt="">
             </a>
@@ -32,7 +32,7 @@
     <!-- End Header -->
 
     <!-- MenuBar -->
-    <div class="menubar">
+    <div class="menubar container">
         <ul>
             <a href="">
                 <img src="./img/header-logo-1.png" alt="">
