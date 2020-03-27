@@ -27,17 +27,17 @@
                 </div>
                 <div class="content-event-list">
                     <div class="row">
-                        <div class="col-md-3 banner">
+                        <div class="col-md-3 col-sm-3 col-3 banner">
                             <a href="">
                                 <img src="./img/evleft.jpg" alt="">
                             </a>
                         </div>
-                        <div class="col-md-6 banner">
+                        <div class="col-md-6 col-sm-6 col-6 banner">
                             <a href="">
                                 <img src="./img/evcenter.jpg" alt="">
                             </a>
                         </div>
-                        <div class="col-md-3 banner">
+                        <div class="col-md-3 col-sm-3 col-3 banner">
                             <a href="">
                                 <img src="./img/evleft.jpg" alt="">
                             </a>

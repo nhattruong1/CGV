@@ -1,3 +1,6 @@
+<?php
+        $sql_listNews = mysqli_query($mysqli, 'Select * from news order by news_id  ');
+?>
 <!-- Content -->
 <div class = "listnews container">
     <div class="listnews-title">
@@ -6,90 +9,19 @@
         </p>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-1.jpg" alt="">
+        <?php
+            while($row_listNews = mysqli_fetch_array($sql_listNews)){
+        ?>
+        <div class="col-md-3 col-sm-4 col-4">
+            <a href="?quanly=newsDetail&id=<?php echo $row_listNews['news_id']?>">
+                <img src="<?php echo $row_listNews['news_imgS']?>" alt="">
                 <i class="far fa-calendar-alt"></i>
                 <span>05/03 - 05/05/2020</span>
             </a>
         </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-2.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-3.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-4.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-1.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-2.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-3.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-4.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-1.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-2.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-3.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="">
-                <img src="./img/240X201-4.jpg" alt="">
-                <i class="far fa-calendar-alt"></i>
-                <span>05/03 - 05/05/2020</span>
-            </a>
-        </div>
+        <?php
+            }
+        ?>
     </div>
     <div class="listnews-line">
     </div>

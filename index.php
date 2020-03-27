@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="./css/movieD.css">
     <link rel="stylesheet" href="./css/listEvent.css">
     <link rel="stylesheet" href="./css/listMovies.css">
-    <link rel="stylesheet" href="./css/newDetail.css">
+    <link rel="stylesheet" href="./css/newD.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>

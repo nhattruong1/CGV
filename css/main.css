@@ -1,3 +1,4 @@
+
 /* CSS Header */
 *{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,7 +22,7 @@
 .header{
     height: 120px;
     width: 100%;
-    background: url(../img/bg-top.png)repeat-x scroll left bottom transparent;
+    background: url(../img/bg-top.png)
 }
 
 .header-content{
@@ -171,3 +172,50 @@
     height: 120px;
 }
 /* End Footer */
+
+/* Responsive */
+.menu-res {
+    display: none;
+}
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(137,137, 135, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+.navbar-collapse .navbar-nav .nav-item .nav-link{
+    color: gray
+}
+@media screen and (max-width: 1000px) {
+    /* Header */
+    .header .header-content .header-content-menu {
+        display: none;
+    }
+    .header .header-content .header-content-buy {
+        display: none;
+    }
+    .header .header-content .header-content-buy {
+        display: none;
+    }
+    .header .header-content .header-content-logo {
+        margin: auto;
+        padding-top: 30px;
+        display: normal;
+    }
+    .menubar {
+        display: none;
+    }
+    .menu-res {
+        display: inline-block;
+    }
+    .footer .footer-theater{
+        display: none;
+    }
+    .footer {
+        border-top: none;
+        border-bottom: none;
+    }
+    .footer .footer-info .row .col-md-2 a img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto; 
+        margin-bottom: 10px;
+    }
+}

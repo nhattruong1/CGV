@@ -30,7 +30,34 @@
         </div>
     </div>
     <!-- End Header -->
-
+    <!-- MenuBar Responsive -->
+    <div class="menu-res container">
+        <div class="row">
+            <nav class="navbar navbar-dark ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"> </span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="?quanly=listmovies">PHIM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">RẠP CGV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">THÀNH VIÊN</a>
+                    </li>    
+                    <li class="nav-item">
+                        <a class="nav-link" href="?quanly=listnews">TIN MỚI & ƯU ĐÃI</a>
+                    </li>    
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- End MenuBar Responsive-->
     <!-- MenuBar -->
     <div class="menubar container">
         <ul>

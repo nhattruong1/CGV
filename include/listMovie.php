@@ -1,7 +1,7 @@
 <!-- Content -->
 <?php
         $sql_listMovie = mysqli_query($mysqli, 'Select * from movie order by movie_id desc');
-    ?>
+?>
 <div class="listMovie-content container">
         <h2 class="listMovie-content-title">
             Phim Đang Chiếu
@@ -14,7 +14,7 @@
                         $myinput= $row_listMovie['movie_date']; 
                         $sqldate= date('d/m/Y',strtotime($myinput))
                 ?>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-6 col-6">
                     <a href="?quanly=phim&id=<?php echo $row_listMovie['movie_id']?>">
                         <img src="<?php echo $row_listMovie['movie_img']?>" alt="">
                     </a>
