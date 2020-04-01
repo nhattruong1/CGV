@@ -1,0 +1,14 @@
+.listTheater .listTheater-title h1{
+    color: #717171;
+    font-size: 48px;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #b9b9b9;
+    text-align: center;
+} 
+.listTheater .listTheater-listCity {
+    margin-bottom: 20px;
+}
+.listTheater button {
+    display: block;
+    margin-left:auto;
+}

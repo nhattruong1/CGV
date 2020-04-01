@@ -1,6 +1,5 @@
 <?php 
     include_once("db/connect.php");
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +19,9 @@
     <link rel="stylesheet" href="./css/movieD.css">
     <link rel="stylesheet" href="./css/listEvent.css">
     <link rel="stylesheet" href="./css/listMovies.css">
-    <link rel="stylesheet" href="./css/newD.css">
+    <link rel="stylesheet" href="./css/newsD.css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/listTheater.css">
 </head>
 <body>
     <?php
@@ -44,6 +44,9 @@
         else if($tam=='newsDetail'){
             include('include/newsDetail.php');
         }
+        else if($tam=='listTheater'){
+            include('include/listTheater.php');
+        }
         else{
             include("include/slider.php");
             include('include/home.php');
@@ -54,5 +57,6 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js'></script>
     <script src="./js/index.js"></script>
+    <script src="./js/listTheater.js"></script>
 </body>
 </html>

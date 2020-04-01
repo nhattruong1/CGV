@@ -13,11 +13,11 @@
     <div class="header">
         <div class="header-content container">
             <a class="header-content-logo" href="index.php">
-                <img src="https://www.cgv.vn/skin/frontend/cgv/default/images/cgvlogo.png" alt="">
+                <img src="./img/cgvlogo.png" alt="">
             </a>
             <ul class="header-content-menu">
                 <a href="">PHIM</a>
-                <a href="">RẠP CGV</a>
+                <a href="?quanly=listTheater">RẠP CGV</a>
                 <a href="">THÀNH VIÊN</a>
                 <a href="">CULTUREPLEX</a>
                 <a href="">
@@ -43,7 +43,7 @@
                         <a class="nav-link" href="?quanly=listmovies">PHIM</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">RẠP CGV</a>
+                        <a class="nav-link" href="?quanly=listTheater">RẠP CGV</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">THÀNH VIÊN</a>
@@ -61,7 +61,7 @@
     <!-- MenuBar -->
     <div class="menubar container">
         <ul>
-            <a href="">
+            <a href="?quanly=listTheater">
                 <img src="./img/header-logo-1.png" alt="">
             </a>
             <a href="?quanly=listmovies">

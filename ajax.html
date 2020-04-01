@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>   
+    <script>
+        $(document).ready(function(){ /* PREPARE THE SCRIPT */
+            $("#allbooks").change(function(){ /* WHEN YOU CHANGE AND SELECT FROM THE SELECT FIELD */
+            var allbooks = $(this).val(); /* GET THE VALUE OF THE SELECTED DATA */
+            var dataString = "allbooks="+allbooks; /* STORE THAT TO A DATA STRING */
+
+            $.ajax({ /* THEN THE AJAX CALL */
+                type: "POST", /* TYPE OF METHOD TO USE TO PASS THE DATA */
+                url: "get-data.php", /* PAGE WHERE WE WILL PASS THE DATA */
+                data: dataString, /* THE DATA WE WILL BE PASSING */
+                success: function(result){ /* GET THE TO BE RETURNED DATA */
+                $("#show").html(result); /* THE RETURNED DATA WILL BE SHOWN IN THIS DIV */
+                }
+            });
+
+            });
+        });
+        </script>
+</head>
+
+<body>
+    
+</body>
+<select name="allbooks" id="allbooks">
+    <option value="none" ></option>
+    <option value="allbooks" >All Books</option>
+  </select>
+  <div id="show">
+    <!-- ITEMS TO BE DISPLAYED HERE -->
+  </div>
+    <br>
+    <div id="txtHint"><b>Person info will be listed here...</b></div>    
+</html>
