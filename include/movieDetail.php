@@ -65,13 +65,51 @@
                                 <?php
                                     for($i=0;$i<5;$i++){
                                 ?>
-                                <div id="day<?php echo $i;?>" class="container tab-pane <?php if($i == 0){echo "active"; }?>"><br>
-                                    <h3>HOME</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <div id="day<?php echo $i;?>" class="container tab-pane <?php if($i == 0){echo "active";} else {echo "fade";}?>"><br>
+                                    <div class="row">
+                                    <div class="form-group col-md-6 col-sm-6 col-6">
+                                        <label for="city" style ="font-weight: bold;">Thành Phố:</label>
+                                        <select id = "city"class="form-control" name="city<?php if($i > 0){echo $i;}?>">
+                                        <?php
+                                            $sql_listCity = mysqli_query($mysqli, 'SELECT DISTINCT `theaters_city` FROM `theaters` ');
+                                            while($row_listCity = mysqli_fetch_array($sql_listCity)){
+                                        ?>
+                                            <option ><?php echo $row_listCity['theaters_city'];?></option>
+                                        <?php 
+                                            }
+                                        ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-6 col-6">
+                                        <label for="theater " style ="font-weight: bold;">Danh Sách Rạp:</label>
+                                        <select id= "theater" class="form-control" name="theaterName<?php if($i > 0){echo $i;}?>">
+                                        <?php
+                                            $sql_listTheater = mysqli_query($mysqli, 'SELECT `theaters_name`, `theaters_city` FROM `theaters`');
+                                            while($row_listTheater = mysqli_fetch_array($sql_listTheater)){
+                                        ?>
+                                            <option class=<?php  $string = $row_listTheater['theaters_city']; echo preg_replace('/\s+/', '', $string);?>><?php echo $row_listTheater['theaters_name']?></option>
+                                        <?php 
+                                            }
+                                        ?>
+                                        </select>    
+                                    </div>
+                                    </div>
                                 </div>
                                 <?php 
                                     } 
                                 ?>
+                                <div class="ticket-booking container">
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-8 col-8 theaterMap">
+                                            <div class="theaterScreen">
+                                                MÀN HÌNH    
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-4">
+                                            s
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         

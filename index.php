@@ -58,5 +58,6 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js'></script>
     <script src="./js/index.js"></script>
     <script src="./js/listTheater.js"></script>
+    <script src="./js/movieD.js"></script>
 </body>
 </html>
