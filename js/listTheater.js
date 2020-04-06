@@ -17,7 +17,6 @@ $('#btnDetailTheater').on('click', function () {
 })
 $('#form').submit(function(){
   var test = $('#sel2').find(":selected").text();
-  var theater = $('#sel2').find(":selected").text();
   $.ajax({
     url: $('#form').attr('action'),
     type: 'POST',

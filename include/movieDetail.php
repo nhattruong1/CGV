@@ -98,18 +98,6 @@
                                 <?php 
                                     } 
                                 ?>
-                                <div class="ticket-booking container">
-                                    <div class="row">
-                                        <div class="col-md-8 col-sm-8 col-8 theaterMap">
-                                            <div class="theaterScreen">
-                                                MÀN HÌNH    
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-4">
-                                            s
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         
