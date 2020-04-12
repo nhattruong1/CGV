@@ -15,14 +15,14 @@
                         $sqldate= date('d/m/Y',strtotime($myinput))
                 ?>
                 <div class="col-md-4 col-sm-6 col-6">
-                    <a href="?quanly=phim&id=<?php echo $row_listMovie['movie_id']?>">
+                    <a href="?controller=phim&id=<?php echo $row_listMovie['movie_id']?>">
                         <img src="<?php echo $row_listMovie['movie_img']?>" alt="">
                     </a>
                     <div class="movie-info">
                         <h4><?php echo $row_listMovie['movie_name']?></h4>
-                    <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Đạo Diễn:</span> <span><?php echo $row_listMovie['movie_directors']?></span></div>
-                    <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Khởi Chiếu:</span> <span><?php echo $sqldate?></span></div>
-                    <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Thời Lượng:</span> <span><?php echo $row_listMovie['movie_time']?></span></div>
+                    <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Đạo Diễn:</span> <span class="d"><?php echo $row_listMovie['movie_directors']?></span></div>
+                    <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Khởi Chiếu:</span> <span class="d"><?php echo $sqldate?></span></div>
+                    <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Thời Lượng:</span> <span class="d"><?php echo $row_listMovie['movie_time']?></span></div>
                     </div>
                     <div class="movie-btn">
                         <button type="button" class="btn btn-danger">Mua Vé </button>

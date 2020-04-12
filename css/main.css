@@ -219,3 +219,26 @@
         margin-bottom: 10px;
     }
 }
+
+@media only screen and (max-width: 1198px) {
+
+}
+@media only screen and (max-width: 991px) {
+
+}
+@media only screen and (max-width: 767px) {
+    *{
+        font-size: 15px;   
+    }
+}
+@media only screen and (max-width: 548px) {
+    *{
+        font-size: 15px;   
+    }
+
+}
+@media only screen and (max-width: 375px) {
+    *{
+        font-size: 10px;   
+    }
+}

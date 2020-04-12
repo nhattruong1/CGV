@@ -1,42 +1,103 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dropdown test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>   
-    <script>
-        $(document).ready(function(){ /* PREPARE THE SCRIPT */
-            $("#allbooks").change(function(){ /* WHEN YOU CHANGE AND SELECT FROM THE SELECT FIELD */
-            var allbooks = $(this).val(); /* GET THE VALUE OF THE SELECTED DATA */
-            var dataString = "allbooks="+allbooks; /* STORE THAT TO A DATA STRING */
-
-            $.ajax({ /* THEN THE AJAX CALL */
-                type: "POST", /* TYPE OF METHOD TO USE TO PASS THE DATA */
-                url: "get-data.php", /* PAGE WHERE WE WILL PASS THE DATA */
-                data: dataString, /* THE DATA WE WILL BE PASSING */
-                success: function(result){ /* GET THE TO BE RETURNED DATA */
-                $("#show").html(result); /* THE RETURNED DATA WILL BE SHOWN IN THIS DIV */
-                }
-            });
-
-            });
-        });
-        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-    
+<div class="row">
+    <label>Voice Gender</label>
+    <div class="input-field col s12">
+        <select id="gender">
+            <option value="" selected>Choose your option</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <label>Voice Language</label>
+    <div class="input-field col s12">
+        <select id="languages">
+            <option value="" selected>Choose your languages</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <label>Voice Name</label>
+    <div class="input-field col s12">
+        <select id="entries">
+            <option value="" selected>Choose your option</option>
+        </select>
+    </div>
+</div>
+
 </body>
-<select name="allbooks" id="allbooks">
-    <option value="none" ></option>
-    <option value="allbooks" >All Books</option>
-  </select>
-  <div id="show">
-    <!-- ITEMS TO BE DISPLAYED HERE -->
-  </div>
-    <br>
-    <div id="txtHint"><b>Person info will be listed here...</b></div>    
+<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+
+
+<script>
+    let languageCodes = [
+        { languageCodes: ['123'], name: 'es-ES-Standard-A', ssmlGender: 'FEMALE', naturalSampleRateHertz: 2403},
+        {languageCodes: ['214'], name: 'it-IT-Standard-A', ssmlGender: 'MALE', naturalSampleRateHertz: 21000},
+        {languageCodes: ['147'], name: 'ja-JP-Standard-A', ssmlGender: 'FEMALE', naturalSampleRateHertz: 3200},
+        {languageCodes: ['290'], name: 'ko-KR-Standard-A', ssmlGender: 'MALE', naturalSampleRateHertz: 2330},
+        {languageCodes: ['173'], name: 'en-US-Wavenet-B', ssmlGender: 'FEMALE', naturalSampleRateHertz: 412},
+        {languageCodes: ['583'], name: 'en-GB-Standard-A', ssmlGender: 'MALE', naturalSampleRateHertz: 8493}
+    ];
+
+    // Register Change listeners
+    function registerEventListeners() {
+        document.getElementById('gender').addEventListener('change',  changeVoiceLanguageOption, false);
+        document.getElementById('languages').addEventListener('change',  changeVoiceNameOption, false);
+    }
+
+    function changeVoiceNameOption() {
+        const valueSelected = document.getElementById('languages').value;
+        let entriesElement = document.getElementById('entries');
+        entriesElement.innerHTML = '';
+        entriesElement.innerHTML += '<option value="" selected>Choose your option</option>'
+
+        languageCodes.filter(( item ) => {
+            return item.languageCodes.includes(valueSelected);
+        }).forEach(( item ) => {
+            entriesElement.innerHTML += `<option value="${item.name}"> ${item.name} </option>`
+        })
+    }
+
+    function changeVoiceLanguageOption() {
+        const valueSelected = document.getElementById('gender').value;
+        let languageElement = document.getElementById('languages');
+        languageElement.innerHTML = ''; // This is what prevents duplication
+        languageElement.innerHTML += '<option value="" selected>Choose your languages</option>'
+
+        languageCodes.filter(( item ) => {
+            return item.ssmlGender === valueSelected;
+        }).forEach(( filteredItems ) => {
+            filteredItems.languageCodes.forEach(( languageCode ) => {
+                languageElement.innerHTML += `<option value="${languageCode}"> ${languageCode} </option>`
+            })
+        })
+
+
+    }
+
+    function populateGender() {
+
+        let genderElement = document.getElementById('gender');
+        let genderObject = {};
+        languageCodes.forEach(( item ) => {
+            genderObject[item.ssmlGender] = '';
+        })
+        Object.keys(genderObject).forEach(( item ) => {
+            genderElement.innerHTML += `<option value="${item}"> ${item} </option>`
+        })
+    }
+
+    registerEventListeners();
+    populateGender();
+</script>
+
 </html>

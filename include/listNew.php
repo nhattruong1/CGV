@@ -13,7 +13,7 @@
             while($row_listNews = mysqli_fetch_array($sql_listNews)){
         ?>
         <div class="col-md-3 col-sm-4 col-4">
-            <a href="?quanly=newsDetail&id=<?php echo $row_listNews['news_id']?>">
+            <a href="?controller=newsDetail&id=<?php echo $row_listNews['news_id']?>">
                 <img src="<?php echo $row_listNews['news_imgS']?>" alt="">
                 <i class="far fa-calendar-alt"></i>
                 <span>05/03 - 05/05/2020</span>

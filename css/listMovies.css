@@ -1,4 +1,7 @@
 
+.listMovie-content {
+    margin-bottom: 30px;
+}
 .listMovie-content .borderBottom-title{
     margin-top: 15px;
     border-top: 2.5px solid black;
@@ -10,10 +13,21 @@
     width: 100%;
 }
 
-.movie-info{
-    margin-bottom: 10px;
-}
+
 .movie-btn{
     display: flex;
     justify-content: space-between
+}
+@media only screen and (max-width: 767px) {
+    *{
+        font-size: 15px;
+    }
+    .movie-info {
+        margin-bottom: 10px;
+    }
+    .movie-info h4{
+        font-size: 15px;
+        font-weight: bold;
+
+    }
 }

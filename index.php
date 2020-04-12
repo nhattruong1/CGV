@@ -15,7 +15,6 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/032571eeb1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/movieD.css">
     <link rel="stylesheet" href="./css/listEvent.css">
     <link rel="stylesheet" href="./css/listMovies.css">
@@ -26,8 +25,8 @@
 <body>
     <?php
         include("include/header.php");
-        if(isset($_GET['quanly'])){
-            $tam = $_GET['quanly'];
+        if(isset($_GET['controller'])){
+            $tam = $_GET['controller'];
         }else{
             $tam = '';
         }

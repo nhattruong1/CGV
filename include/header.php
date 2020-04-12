@@ -17,14 +17,14 @@
             </a>
             <ul class="header-content-menu">
                 <a href="">PHIM</a>
-                <a href="?quanly=listTheater">RẠP CGV</a>
+                <a href="?controller=listTheater">RẠP CGV</a>
                 <a href="">THÀNH VIÊN</a>
                 <a href="">CULTUREPLEX</a>
                 <a href="">
                     <img src="./img/kenhcine.gif" alt="">
                 </a>
             </ul>
-            <a class="header-content-buy" href="?quanly=listmovies">
+            <a class="header-content-buy" href="?controller=listmovies">
                 <img src="./img/mua-ve_ngay.png" alt="">
             </a>
         </div>
@@ -40,16 +40,16 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="?quanly=listmovies">PHIM</a>
+                        <a class="nav-link" href="?controller=listmovies">PHIM</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?quanly=listTheater">RẠP CGV</a>
+                        <a class="nav-link" href="?controller=listTheater">RẠP CGV</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">THÀNH VIÊN</a>
                     </li>    
                     <li class="nav-item">
-                        <a class="nav-link" href="?quanly=listnews">TIN MỚI & ƯU ĐÃI</a>
+                        <a class="nav-link" href="?controller=listnews">TIN MỚI & ƯU ĐÃI</a>
                     </li>    
                     </ul>
                 </div>
@@ -61,10 +61,10 @@
     <!-- MenuBar -->
     <div class="menubar container">
         <ul>
-            <a href="?quanly=listTheater">
+            <a href="?controller=listTheater">
                 <img src="./img/header-logo-1.png" alt="">
             </a>
-            <a href="?quanly=listmovies">
+            <a href="?controller=listmovies">
                 <img src="./img/header-logo-2.png" alt="">
             </a>
             <a href="">
@@ -76,7 +76,7 @@
             <a href="">
                 <img src="./img/header-logo-5.png" alt="">
             </a>
-            <a href="?quanly=listnews">
+            <a href="?controller=listnews">
                 <img src="./img/header-logo-6.png" alt="">
             </a>
             <a href="">

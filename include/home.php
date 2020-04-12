@@ -12,7 +12,7 @@
                     <?php
                     while($row_listMovie = mysqli_fetch_array($sql_listMovie)){
                     ?>
-                    <a href="?quanly=phim&id=<?php echo $row_listMovie['movie_id']?>">
+                    <a href="?controller=phim&id=<?php echo $row_listMovie['movie_id']?>">
                         <img src="<?php echo $row_listMovie['movie_img']?>" alt="">
                     </a>
                     <?php

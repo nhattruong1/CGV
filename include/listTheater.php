@@ -32,7 +32,6 @@
             </select>
         </div>
         <form  style = "display:inline" id="form">
-            <input id = "detailId" type="hidden" name = "name" value = "a">
             <button name = "btnDetailTheater" type="submit" class="btn btn-danger" id = "btnDetailTheater">Xem Chi Tiết</button>
         </form>
     </div>
