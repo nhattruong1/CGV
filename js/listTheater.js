@@ -38,7 +38,7 @@ $('#form').submit(function(){
                   document.getElementById("listTheater-detail").innerHTML = this.responseText;
               }
           };
-          xmlhttp.open("POST","getuser.php?q="+test,true);
+          xmlhttp.open("POST","getTheaterDetail.php?q="+test,true);
           xmlhttp.send();
       }
     }

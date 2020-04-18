@@ -1,5 +1,6 @@
 <?php 
     include_once("db/connect.php");
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,29 +22,40 @@
     <link rel="stylesheet" href="./css/newsD.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/listTheater.css">
+    <link rel="stylesheet" href="./css/user.css">
 </head>
 <body>
     <?php
         include("include/header.php");
         if(isset($_GET['controller'])){
-            $tam = $_GET['controller'];
+            $controller = $_GET['controller'];
         }else{
-            $tam = '';
+            $controller = '';
         }
 
-        if($tam=='phim'){
+        if($controller=='phim'){
             include('include/movieDetail.php');
         }
-        else if($tam=='listnews'){
+        else if($controller=='listnews'){
             include('include/listNew.php');
         }
-        else if($tam=='listmovies'){
+        else if($controller=='listmovies'){
             include('include/listMovie.php');
         }
-        else if($tam=='newsDetail'){
+        else if($controller=='userInfo'){
+            if(isset($_SESSION['user']) && $_SESSION['user'] != '')
+            {
+                include('include/userInfo.php');
+            }
+            else{
+                include("include/slider.php");
+                include('include/home.php');
+            }
+        }
+        else if($controller=='newsDetail'){
             include('include/newsDetail.php');
         }
-        else if($tam=='listTheater'){
+        else if($controller=='listTheater'){
             include('include/listTheater.php');
         }
         else{
@@ -58,5 +70,6 @@
     <script src="./js/index.js"></script>
     <script src="./js/listTheater.js"></script>
     <script src="./js/movieD.js"></script>
+    <script src="./js/userInfo.js"></script>
 </body>
 </html>

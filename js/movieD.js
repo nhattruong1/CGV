@@ -10,6 +10,7 @@ $("[name=city]").change(function() {
 $('#form2').submit(function(){
     var theater = $('#theater').find(":selected").val();
     var type = $('#ticketType').find(":selected").val();
+    var ticket = $('#ticketType').find(":selected").text();
     var movie =  $(".movie-detail-content-name").text();
     var showing = $('#showings').find(":selected").val();
     $.ajax({
@@ -17,6 +18,7 @@ $('#form2').submit(function(){
         type: 'POST',
         data : $('#form2').serialize(),
         success: function(){
+            console.log(ticket);
             if (theater == "" || type == "" || movie == "" || typeof showing === "undefined") {
                 document.getElementById("mapTheater").innerHTML = "Xin Lỗi Không Có Suất Chiếu";
                 return;
@@ -30,14 +32,9 @@ $('#form2').submit(function(){
                 }
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        console.log(theater);
-                        console.log(type);
-                        console.log(movie);
-                        console.log(showing)
                         document.getElementById("mapTheater").innerHTML = this.responseText;
                         $(document).ready(function () {
                             $(".seats").click(function (event) {
-                                console.log($(this).text()); // get id of clicked li
                                 var color = $(event.target).css("background-color");
                                 if(color === "rgb(230, 202, 196)"){
                                     $(this).css("background-color", "rgb(185,222,160)");
@@ -47,9 +44,38 @@ $('#form2').submit(function(){
                                 }
                             });
                         });
+                        let array = [];
+                        $('.seatName').submit(function() {
+                            var text = $(this).text();
+                            $.ajax({
+                                url: $('.seatName').attr('action'),
+                                type: 'POST',
+                                data : $('.seatName').serialize(),
+                                success: function(){
+                                    if (window.XMLHttpRequest) {
+                                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                                        xmlhttp = new XMLHttpRequest();
+                                    } else {
+                                        // code for IE6, IE5
+                                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                                    }
+                                    xmlhttp.onreadystatechange = function() {
+                                        if (this.readyState == 4 && this.status == 200) {
+                                            array= array.includes(text) ? array.filter(el=>el!=text) : array.concat(text);
+                                            let newS = array.toString();
+                                            document.getElementById("seatN").innerHTML = newS;
+                                            $('input[name=listTicket]').val(newS);
+                                        }
+                                    };
+                                    xmlhttp.open("POST","seatSelect.php",true);
+                                    xmlhttp.send();
+                                }
+                            });
+                            return false;
+                        });
                     }
                 };
-                xmlhttp.open("GET","booking.php?theater="+theater+"&type="+type+"&movie="+movie,true);
+                    xmlhttp.open("GET","booking.php?theater="+theater+"&type="+type+"&ticket="+ticket+"&movie="+movie,true);
                 xmlhttp.send();
             }
         }
@@ -74,3 +100,7 @@ $("[name=ticketType]").change(function() {
     $("[name=showings] option").detach()
     showings.filter("." + newStr).clone().appendTo("[name=showings]")
 }).change()
+
+function  notification() {
+    alert('Vui Lòng Đăng Nhập');
+}

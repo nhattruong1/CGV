@@ -4,9 +4,9 @@
 <!-- Content -->
 <div class = "listnews container">
     <div class="listnews-title">
-        <p>
+        <h1>
             s
-        </p>
+        </h1>
     </div>
     <div class="row">
         <?php

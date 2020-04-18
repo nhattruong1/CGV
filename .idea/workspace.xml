@@ -36,6 +36,7 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -59,6 +60,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\CGV\template" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\CGV" />
     </key>
@@ -79,7 +83,9 @@
       <workItem from="1584990606909" duration="822000" />
       <workItem from="1585036815451" duration="89000" />
       <workItem from="1586342120321" duration="11141000" />
-      <workItem from="1586370667250" duration="44954000" />
+      <workItem from="1586370667250" duration="56256000" />
+      <workItem from="1586754708907" duration="57558000" />
+      <workItem from="1587024380632" duration="51885000" />
     </task>
     <servers />
   </component>
@@ -99,35 +105,29 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1366.728@0.0.1366.728" timestamp="1586342265531" />
-    <state x="517" y="288" key="NewPhpFileDialog" timestamp="1584962532636">
+    <state x="517" y="288" key="NewPhpFileDialog" timestamp="1587111404202">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="517" y="288" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1584962532636" />
+    <state x="517" y="288" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1587111404202" />
     <state x="184" y="7" key="SettingsEditor" timestamp="1584887383607">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="7" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1584887383607" />
-    <state x="379" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1586370670199">
+    <state x="379" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1587025317033">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1586370670199" />
-    <state x="551" y="23" width="737" height="606" key="find.popup" timestamp="1586366347463">
+    <state x="379" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1587025317033" />
+    <state x="551" y="23" width="737" height="606" key="find.popup" timestamp="1587194791935">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="551" y="23" width="737" height="606" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1586366347463" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1584901200852">
+    <state x="551" y="23" width="737" height="606" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1587194791935" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1587045544096">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1584901200852" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/include/movieDetail.php</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1587045544096" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1586778039199">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1586778039199" />
   </component>
 </project>

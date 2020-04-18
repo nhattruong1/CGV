@@ -4,11 +4,25 @@
     }else{
         $id = '';
     }
+    $_SESSION['IDMovie'] = $id;
     $sql_detail = mysqli_query($mysqli, "SELECT * FROM movie WHERE movie_id = '$id'");
+    if(isset($_POST['booking'])){
+        $_SESSION['ticket'] = $_POST['listTicket'];
+        $arr = array_map('trim', explode(',', $_SESSION['ticket']));
+        foreach ($arr as $seat) {
+            $sql_getSeat = mysqli_query($mysqli, "UPDATE `seat`,room,theaters SET `seat_status`= 1 
+            WHERE `seat_room`= room_id and room_theater = theaters_id 
+            and seat_name = '$seat' and theaters_id = '".$_SESSION['theaterName']."' 
+            and room_name = '".$_SESSION['typeTicket']."'");
+            $sql_insertBookingHis = mysqli_query($mysqli, "INSERT INTO `booking` (`booking_id`, `booking_user`, `booking_movie`, `booking_theater`, `booking_seat`, `booking_ticket`, `booking_time`) 
+            VALUES (NULL, '".$_SESSION['idUser']."', '".$_SESSION['IDMovie']."', '".$_SESSION['theaterName']."', '$seat', '".$_SESSION['ticketName']."', NOW())");
+        }
+    }
+
 ?>
 <?php
     while($detail = mysqli_fetch_array($sql_detail)){
-        $myinput= $detail['movie_date']; 
+        $myinput= $detail['movie_date'];
         $sqldate= date('d/m/Y',strtotime($myinput))
 ?>
 <!-- Content -->
@@ -31,7 +45,7 @@
                 <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Thời Lượng:</span> <span><?php echo $detail['movie_time']?></span></div>
                 <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Ngôn Ngữ:</span> <span><?php echo $detail['movie_language']?></span></div>
                 <div class="movie-detail-content-info"><span class="movie-detail-content-info-detail">Rated:</span> <span><?php echo $detail['movie_rate']?></span></div>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-danger" data-toggle="modal" <?php if(isset($_SESSION['user']) && $_SESSION['user'] != ''){echo 'data-target="#myModal"';}else{echo 'onclick="notification()"';}?>>
                     MUA VÉ
                 </button>   
                 <!-- The Modal -->
@@ -82,8 +96,12 @@
                                     <label for="ticketType" style ="font-weight: bold;">Loại Vé:</label>
                                     <select id = "ticketType"class="form-control" name="ticketType">
                                         <option selected disabled>Chọn Loại Vé</option>
-                                        <option value="Phòng 1">Vé 2D</option>
-                                        <option value="Phòng 2">Vé 3D</option>
+                                        <?php
+                                            $sql_listTicket = mysqli_query($mysqli, 'SELECT * FROM `category_ticket`');
+                                            while($row_listTicket = mysqli_fetch_array($sql_listTicket)){
+                                        ?>
+                                            <option value="<?php echo $row_listTicket['category_ticket_room']?>"><?php echo $row_listTicket['name']?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-6">

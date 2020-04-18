@@ -1,8 +1,13 @@
 <?php 
     include_once("db/connect.php");
+    session_start();
     $q = $_GET['theater'];
     $type = $_GET['type'];
+    $name = $_GET['ticket'];
+    $_SESSION['theaterName'] = $q;
+    $_SESSION['typeTicket'] = $type;
     $movie = $_GET['movie'];
+    $_SESSION['ticketName'] = $name;
     $sql_ticketInfo = mysqli_query($mysqli, "SELECT movie_name,theaters_name,room_name,showings_time 
     FROM `showings`,theaters,room,movie 
     WHERE showings_name_movie = movie_id and showings_room = room_id and room_theater = theaters_id
@@ -30,6 +35,9 @@
                 -ms-user-select: none; /* Internet Explorer/Edge */
                     user-select: none; /* Non-prefixed version, currently
                                         supported by Chrome, Opera and Firefox */
+        }
+        .disabled{
+            pointer-events: none;
         }
         @media only screen and (max-width: 1366px) {
             .noteTitle {
@@ -65,7 +73,7 @@
             }
             .theaterMap .rowSeat {
                 text-align:center;
-                margin-bottom: 40px
+                margin-bottom: 5px
             }
             .theaterMap .screen {
             background-color: rgb(240,240,240);
@@ -128,7 +136,7 @@
             }
             .theaterMap .rowSeat {
                 text-align:center;
-                margin-bottom: 35px
+                margin-bottom: 5px
             }
             .reserved {
                 display: inline;
@@ -185,7 +193,7 @@
             }
             .theaterMap .rowSeat {
                 text-align:center;
-                margin-bottom: 17px 
+                margin-bottom: 5px
             }
             .reserved {
                 display: inline;
@@ -242,7 +250,7 @@
             }
             .theaterMap .rowSeat {
                 text-align:center;
-                margin-bottom: 20px
+                margin-bottom: 5px
             }
             .reserved {
                 display: inline;
@@ -299,7 +307,7 @@
             }
             .theaterMap .rowSeat {
                 text-align:center;
-                margin-bottom: 15px
+                margin-bottom: 5px
             }
             .reserved {
                 display: inline;
@@ -391,7 +399,12 @@
         <div>Suất Chiếu: <span><?php echo $row_ticketInfo['showings_time'];?></span></div>
         <div>Rạp: <span><?php echo $row_ticketInfo['theaters_name'];?></span></div>
         <div>Phòng: <span><?php echo $row_ticketInfo['room_name'];?></span></div>
+        <div>Ghế: <span id="seatN"></span></div>
     </div>
+    <form action="" method="post" id = "booking">
+        <input type="hidden" name="listTicket" id="listTicket" value=""/>
+        <button type="submit" name="booking" class="btn btn-primary">Đặt Vé</button>
+    </form>
     <?php } ?>
     <div class="screen">SCREEN</div>
     <?php
@@ -405,7 +418,11 @@
         $sql_seat = mysqli_query($mysqli, "SELECT seat_name,seat_status FROM seat,room,theaters WHERE seat_room = room.room_id AND room.room_theater = theaters.theaters_id and seat_row = '".$row_seatRow['seat_row']."' and theaters.theaters_id = '".$q."' and room.room_name = '".$type."'");
         while($row_seat = mysqli_fetch_array($sql_seat)){
     ?>
-        <div class="<?php if($row_seat['seat_status'] == 1) echo "reserved"; else echo "seats"?> noselect"><?php echo $row_seat['seat_name']?></div>
+        <form action="" method="post" class="seatName" style="display: inline;margin: 0">
+            <input type="text" name="seatName" value="<?php echo $row_seat['seat_name']?>" style="display: none"/>
+            <button style="margin: 0;border: 0" type="submit" class="<?php if($row_seat['seat_status'] == 1) echo "reserved disabled"; else echo "seats"?> noselect" name = "submit"><?php echo $row_seat['seat_name']?></button>
+        </form>
+<!--        <div class="--><?php //if($row_seat['seat_status'] == 1) echo "reserved"; else echo "seats"?><!-- noselect">--><?php //echo $row_seat['seat_name']?><!--</div>-->
         <?php } ?>
     </div>
     <?php 
@@ -422,17 +439,35 @@
     </div>
 </div>
 <script>
-$(document).ready(function () {
-    $(".seats").click(function (event) {
-        var color = $(event.target).css("background-color");
-        if(color === "rgb(230, 202, 196)"){
-            $(this).css("background-color", "rgb(185,222,160)");
-        }
-        else{
-            $(this).css("background-color", "rgb(230,202,196)");
-        }
+    let array = [];
+    $('.seatName').submit(function() {
+        var text = $(this).text();
+        $.ajax({
+            url: $('.seatName').attr('action'),
+            type: 'POST',
+            data : $('.seatName').serialize(),
+            success: function(){
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        array= array.includes(text) ? array.filter(el=>el!=text) : array.concat(text);
+                        let newS = array.toString();
+                        console.log(array);
+                        document.getElementById("seatN").innerHTML = newS;
+                    }
+                };
+                xmlhttp.open("POST","seatSelect.php",true);
+                xmlhttp.send();
+            }
+        });
+        return false;
     });
-});
 </script>
 </body>
 </html>
