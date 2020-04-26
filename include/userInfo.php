@@ -4,7 +4,6 @@
                 SET `users_info_name`= '".$_POST['name']."',`users_info_age`='".$_POST['age']."',`users_info_gender`='".$_POST['gender']."' 
                 WHERE `users_info_login` =  '".$_SESSION['idUser']."'");
     }
-
     if(isset($_POST['insertInfo'])){
         $sql_updateInfo = mysqli_query($mysqli, "INSERT INTO 
             `users_info` (`users_info_id`, `users_info_name`, `users_info_age`, `users_info_gender`, `users_info_login`) 
@@ -28,6 +27,7 @@
             }
         }
     }
+
 ?>
 <div class="container infomation">
     <div class="title">
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-md-9 col-sm-9 col-9">
-            <div id="content-info">waiting</div>
+            <div id="content-info">waiting...</div>
         </div>
     </div>
 </div>

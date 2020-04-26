@@ -113,7 +113,7 @@
                                                 $sql_show = mysqli_query($mysqli, "SELECT * FROM showings,theaters, room,movie WHERE showings_room = room_id and showings_name_movie = movie_id and room_theater = theaters_id and movie_id = '$id'");
                                                 while($row_show = mysqli_fetch_array($sql_show)){
                                                 ?>
-                                                    <option class="<?php  $theater = preg_replace('/\s+/', '', $row_show['theaters_name']);$room = preg_replace('/\s+/', '', $row_show['room_name']); echo "$theater $room";?>"><?php echo $row_show['showings_time']?></option>
+                                                    <option class="<?php  $theater = preg_replace('/\s+/', '', $row_show['theaters_name']);$room = preg_replace('/\s+/', '', $row_show['room_name']); echo "$theater $room";?>" value="<?php echo $row_show['showings_room']?>"><?php echo $row_show['showings_time']?></option>
                                                 <?php
                                                 }
                                                 ?>

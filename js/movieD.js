@@ -75,7 +75,7 @@ $('#form2').submit(function(){
                         });
                     }
                 };
-                    xmlhttp.open("GET","booking.php?theater="+theater+"&type="+type+"&ticket="+ticket+"&movie="+movie,true);
+                    xmlhttp.open("GET","booking.php?theater="+theater+"&type="+type+"&ticket="+ticket+"&movie="+movie+"&showing="+showing,true);
                 xmlhttp.send();
             }
         }

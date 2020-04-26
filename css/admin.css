@@ -1,0 +1,83 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+.tabBarLeft{
+    height: 100%;
+}
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+.tabBarLeft .tabBarLeft-logo{
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.tabBarLeft .tabBarLeft-menu {
+    color: rgba(255,255,255,.8);
+    text-decoration: none;
+    display: block;
+}
+.tabBarLeft .tabBarLeft-menu .tabBarLeft-menu-title{
+    display: inline;
+}
+
+.tabBarLeft-menu:hover{
+    color: white;
+}
+hr{
+    background-color: rgba(255,255,255,.3);
+}
+.tabBarLeft .tabBarLeft-cate{
+    font-weight: 800;
+    font-size: .65rem;
+    color: rgba(255,255,255,.3);
+}
+/*end tabbar*/
+.mainContent{
+    margin-bottom: 50px;
+}
+.mainContent-title{
+    color: #5a5c69!important;
+    font-size: 1.75rem;
+    font-weight: 400;
+}
+.mainContent-title-note{
+    color: #5a5c69!important;
+}
+.card-list {
+    margin-top: 30px;
+}
+
+.card-text{
+    color: #5a5c69;
+    font-size: 1.25rem;
+}
+.ml{
+    padding-left: 1.5rem!important;;
+}
+.mr{
+    padding-right: 1.5rem!important;
+}
+.chart{
+    margin-top: 20px;
+}
+
+.card-header-title{
+    color: #4e73df!important;
+    font-weight: 700!important;
+}
+tr{
+    color: #5a5c69!important;
+}
+
+footer .row .col-md-10 {
+    text-align: center;
+    color: #858796;
+    font-size: 0.8rem;
+    padding: 20px 0;
+}

@@ -1,3 +1,8 @@
 .infomation{
     margin-bottom: 50px;
+    border-bottom: 1px solid black;
+}
+
+.infomation .row{
+    margin-bottom: 20px;
 }

@@ -4,6 +4,7 @@
     $q = $_GET['theater'];
     $type = $_GET['type'];
     $name = $_GET['ticket'];
+    $showingRoom = $_GET['showing'];
     $_SESSION['theaterName'] = $q;
     $_SESSION['typeTicket'] = $type;
     $movie = $_GET['movie'];
@@ -11,7 +12,7 @@
     $sql_ticketInfo = mysqli_query($mysqli, "SELECT movie_name,theaters_name,room_name,showings_time 
     FROM `showings`,theaters,room,movie 
     WHERE showings_name_movie = movie_id and showings_room = room_id and room_theater = theaters_id
-    and room_theater = '".$q."' and room_name = '".$type."'");
+    and room_theater = '".$q."' and room_name = '".$type."' and movie_name = '".$movie."'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,69 +40,68 @@
         .disabled{
             pointer-events: none;
         }
-        @media only screen and (max-width: 1366px) {
-            .noteTitle {
-                margin-bottom: 15px;
-                font-weight: bold;
-                margin-right: 10px;
-                font-size:11px
-                }
-            .seatNoteA {
-                padding: 10px;
-                font-size: 11px;
-                border-radius: 5px;
-                background-color: rgb(185,222,160);
-                color: white;
-                font-weight: bold;
-            }
-            .seatNoteB {
-                padding: 10px;
-                font-size: 11px;
-                border-radius: 5px;
-                background-color: rgb(230,202,196);
-                color: white;
-                font-weight: bold;  
-            }
 
-            .seatNoteC {
-                padding: 10px;
-                font-size: 11px;
-                border-radius: 5px;
-                background-color: rgb(71,43,52);
-                color: white;
-                font-weight: bold;  
+        .noteTitle {
+            margin-bottom: 15px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size:11px
             }
-            .theaterMap .rowSeat {
-                text-align:center;
-                margin-bottom: 5px
-            }
-            .theaterMap .screen {
-            background-color: rgb(240,240,240);
-            text-align: center;
-            margin-top: 8px;
-            margin-bottom: 30px;
-            }
-            .reserved {
-                display: inline;
-                padding: 20px;
-                font-size: 15.5px;
-                border-radius: 5px;
-                background-color: rgb(71,43,52);
-                color: white;
-                font-weight: bold;
-            }
-            .theaterMap .rowSeat .seats {
-                display: inline;
-                padding: 20px;
-                font-size: 15.5px;
-                border-radius: 5px;
-                background-color: rgb(185,222,160);
-                color: white;
-                font-weight: bold;  
-            }
-            .theaterMap .seats:hover {
-                background-color: green;
-            }
+        .seatNoteA {
+            padding: 10px;
+            font-size: 11px;
+            border-radius: 5px;
+            background-color: rgb(185,222,160);
+            color: white;
+            font-weight: bold;
+        }
+        .seatNoteB {
+            padding: 10px;
+            font-size: 11px;
+            border-radius: 5px;
+            background-color: rgb(230,202,196);
+            color: white;
+            font-weight: bold;
+        }
+
+        .seatNoteC {
+            padding: 10px;
+            font-size: 11px;
+            border-radius: 5px;
+            background-color: rgb(71,43,52);
+            color: white;
+            font-weight: bold;
+        }
+        .theaterMap .rowSeat {
+            text-align:center;
+            margin-bottom: 5px
+        }
+        .theaterMap .screen {
+        background-color: rgb(240,240,240);
+        text-align: center;
+        margin-top: 8px;
+        margin-bottom: 30px;
+        }
+        .reserved {
+            display: inline;
+            padding: 20px;
+            font-size: 15.5px;
+            border-radius: 5px;
+            background-color: rgb(71,43,52);
+            color: white;
+            font-weight: bold;
+        }
+        .theaterMap .rowSeat .seats {
+            display: inline;
+            padding: 20px;
+            font-size: 15.5px;
+            border-radius: 5px;
+            background-color: rgb(185,222,160);
+            color: white;
+            font-weight: bold;
+        }
+        .theaterMap .seats:hover {
+            background-color: green;
         }
         @media only screen and (max-width: 1198px) {
             .noteTitle {
@@ -408,14 +408,12 @@
     <?php } ?>
     <div class="screen">SCREEN</div>
     <?php
-        $sql_seatRow = mysqli_query($mysqli, "SELECT DISTINCT seat_row from seat,room,theaters,showings, movie
-        WHERE seat.seat_room = room.room_id and room.room_theater = theaters.theaters_id and theaters.theaters_id = '".$q."' 
-        and room.room_name='".$type."' and showings_name_movie = movie_id and movie_name = '".$movie."'");
+        $sql_seatRow = mysqli_query($mysqli, "SELECT DISTINCT seat_row from seat where seat_room = '$showingRoom'");
         while($row_seatRow = mysqli_fetch_array($sql_seatRow)){
     ?>
     <div class="rowSeat">
     <?php
-        $sql_seat = mysqli_query($mysqli, "SELECT seat_name,seat_status FROM seat,room,theaters WHERE seat_room = room.room_id AND room.room_theater = theaters.theaters_id and seat_row = '".$row_seatRow['seat_row']."' and theaters.theaters_id = '".$q."' and room.room_name = '".$type."'");
+        $sql_seat = mysqli_query($mysqli, "SELECT * from seat where  seat_row = '".$row_seatRow['seat_row']."' and seat_room = '$showingRoom'");
         while($row_seat = mysqli_fetch_array($sql_seat)){
     ?>
         <form action="" method="post" class="seatName" style="display: inline;margin: 0">

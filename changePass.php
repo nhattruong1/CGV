@@ -27,10 +27,6 @@
 </div>
 <form method="post">
     <div class="form-group">
-        <label>Địa Chỉ Email:</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Võ Nhật Trường    " readonly>
-    </div>
-    <div class="form-group">
         <label>Mật Khẩu Hiện Tại:</label>
         <input class="form-control" type="password" id="oldP" name="oldP" placeholder="">
     </div>
