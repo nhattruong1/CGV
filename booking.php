@@ -1,18 +1,8 @@
 <?php 
     include_once("db/connect.php");
     session_start();
-    $q = $_GET['theater'];
-    $type = $_GET['type'];
-    $name = $_GET['ticket'];
     $showingRoom = $_GET['showing'];
-    $_SESSION['theaterName'] = $q;
-    $_SESSION['typeTicket'] = $type;
-    $movie = $_GET['movie'];
-    $_SESSION['ticketName'] = $name;
-    $sql_ticketInfo = mysqli_query($mysqli, "SELECT movie_name,theaters_name,room_name,showings_time 
-    FROM `showings`,theaters,room,movie 
-    WHERE showings_name_movie = movie_id and showings_room = room_id and room_theater = theaters_id
-    and room_theater = '".$q."' and room_name = '".$type."' and movie_name = '".$movie."'");
+    $sql_ticketInfo = mysqli_query($mysqli, "SELECT * FROM `showings`,theaters,room,movie WHERE showings_name_movie = movie_id and showings_room = room_id and room_theater = theaters_id and showings_room = '$showingRoom'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -390,9 +380,16 @@
     </style>
 </head>
 <body>
-<div class="theaterMap col">
+<div class="theaterMap">
     <?php
         while($row_ticketInfo = mysqli_fetch_array($sql_ticketInfo)){
+            $_SESSION['theaterName'] = $row_ticketInfo['theaters_id'];
+            $_SESSION['typeTicket'] = $row_ticketInfo['room_name'];
+            if($row_ticketInfo['room_name'] == 'Phòng 1'){
+                $_SESSION['ticketName'] = 'Vé Phim 2D';
+            }else if ($row_ticketInfo['room_name'] == 'Phòng 2'){
+                $_SESSION['ticketName'] = 'Vé Phim 3D';
+            }
     ?>
     <div class="ticket-info">
         <div>Phim: <span><?php echo $row_ticketInfo['movie_name'];?></span></div>

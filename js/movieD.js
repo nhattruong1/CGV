@@ -8,18 +8,13 @@ $("[name=city]").change(function() {
 }).change()
 
 $('#form2').submit(function(){
-    var theater = $('#theater').find(":selected").val();
-    var type = $('#ticketType').find(":selected").val();
-    var ticket = $('#ticketType').find(":selected").text();
-    var movie =  $(".movie-detail-content-name").text();
     var showing = $('#showings').find(":selected").val();
     $.ajax({
         url: $('#form2').attr('action'),
         type: 'POST',
         data : $('#form2').serialize(),
         success: function(){
-            console.log(ticket);
-            if (theater == "" || type == "" || movie == "" || typeof showing === "undefined") {
+            if (typeof showing === "undefined") {
                 document.getElementById("mapTheater").innerHTML = "Xin Lỗi Không Có Suất Chiếu";
                 return;
             } else {
@@ -75,7 +70,7 @@ $('#form2').submit(function(){
                         });
                     }
                 };
-                    xmlhttp.open("GET","booking.php?theater="+theater+"&type="+type+"&ticket="+ticket+"&movie="+movie+"&showing="+showing,true);
+                    xmlhttp.open("GET","booking.php?showing="+showing,true);
                 xmlhttp.send();
             }
         }
@@ -93,7 +88,7 @@ $("[name=theaterName]").change(function() {
 }).change()
 
 var showings = $("[name=showings] option").detach()
-$("[name=ticketType]").change(function() {
+$("[name=city]").change(function() {
     var val = $(this).find(":selected").val();
     var newStr = val.replace(/\s+/g, '');
     console.log(newStr)
