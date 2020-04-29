@@ -165,7 +165,6 @@ include_once("db/connect.php");
                             <button type="submit" name ="deleteRowShowings" style="border: 0;background-color: Transparent;">
                                 <i type = "submit" name ="deleteRowShowings" class="far fa-trash-alt" style="color: rgb(247,55,55)"></i>
                             </button>
-
                         </form>
                     </td>
                 </tr>

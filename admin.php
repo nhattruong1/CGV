@@ -1,7 +1,93 @@
 <?php
     include_once("db/connect.php");
     session_start();
+    function uploadImgToFolder($valueTmp,$valueName){
+        $allowEdit = array("jpg", "jpeg", "gif", "png");
+        $toDirEdit = 'img/';
+        if ( !!$valueTmp)
+        {
+            $info = explode('.', strtolower( $valueName) ); // whats the extension of the file
 
+            if ( in_array( end($info), $allowEdit) ) // is this file allowed
+            {
+                move_uploaded_file( $valueTmp, $toDirEdit . basename($valueName) );
+            }
+        }
+    }
+    if(isset($_POST['deleteRowEvent'])){
+        $idRowNews =  $_POST['idRowNews'];
+        $sql_deleteShowing = mysqli_query($mysqli,"DELETE FROM `news` WHERE `news_id` = '$idRowNews'");
+        echo "<script type='text/javascript'>alert('Xóa phim thành công');</script>";
+    }
+    if ((isset($_POST['addNews']))){
+        $nameNewsAdd = $_POST['nameNewsAdd'];
+        $imgSNewsAdd = './img/'.$_FILES['imgSNewsAdd']['name'];
+        $imgLNewsAdd = './img/'.$_FILES['imgLNewsAdd']['name'];
+        $decriptionNewsAdd = $_POST['decriptionNewsAdd'];
+        uploadImgToFolder($_FILES['imgSNewsAdd']['tmp_name'],$_FILES['imgSNewsAdd']['name']);
+        uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name'],$_FILES['imgLNewsAdd']['name']);
+
+        if($imgSNewsAdd == './img/' || $imgLNewsAdd == './img/'|| ($imgSNewsAdd == './img/' && $imgLNewsAdd == './img/')){
+            echo "<script type='text/javascript'>alert('Vui lòng chọn ảnh cho sự kiện');</script>";
+        }else{
+            $sql_editEvent = mysqli_query($mysqli,"INSERT INTO `news`(`news_id`, `news_title`, `news_imgS`, `news_imgL`, `new_content`) 
+            VALUES (null,'$nameNewsAdd','$imgSNewsAdd','$imgLNewsAdd','$decriptionNewsAdd')");
+            echo "<script type='text/javascript'>alert('Thêm mới tin tức/sự kiện thành công');</script>";
+        }
+    }
+
+    if (isset($_POST['eventEdit'])){
+        $idNewsEdit = $_POST['idNewsEdit'];
+        $nameNewsEdit = $_POST['nameNewsEdit'];
+        $decriptionNewsEdit = $_POST['decriptionNewsEdit'];
+        $imgSNewsEdit = './img/'.$_FILES['imgSNewsEdit']['name'];
+        $imgLNewsEdit = './img/'.$_FILES['imgLNewsEdit']['name'];
+        uploadImgToFolder($_FILES['imgSNewsEdit']['tmp_name'],$_FILES['imgSNewsEdit']['name']);
+        uploadImgToFolder($_FILES['imgLNewsEdit']['tmp_name'],$_FILES['imgLNewsEdit']['name']);
+        if($imgSNewsEdit == './img/' || $imgLNewsEdit == './img/'|| ($imgSNewsEdit == './img/' && $imgLNewsEdit == './img/')){
+            echo "<script type='text/javascript'>alert('Vui lòng chọn ảnh cho sự kiện');</script>";
+        }else{
+            $sql_editEvent = mysqli_query($mysqli,"UPDATE `news` SET 
+            `news_title`='$nameNewsEdit',`news_imgS`='$imgSNewsEdit',`news_imgL`='$imgLNewsEdit',`new_content`='$decriptionNewsEdit' WHERE `news_id` = $idNewsEdit ");
+        }
+    }
+    if (isset($_POST['FilmEdit'])){
+        $idFilmEdit = $_POST['idFilmEdit'];
+        $filmNameEdit = $_POST['filmNameEdit'];
+        $directorEdit = $_POST['directorEdit'];
+        $actorEdit = $_POST['actorEdit'];
+        $categoryFilmEdit = $_POST['categoryFilmEdit'];
+        $dateEdit = $_POST['dateEdit'];
+        $timeEdit = $_POST['timeEdit'];
+        $languageEdit = $_POST['languageEdit'];
+        $rateEdit = $_POST['rateEdit'];
+        $posterEdit = './img/'.$_FILES['posterEdit']['name'];
+        $decriptionEdit = $_POST['decriptionEdit'];
+        $trailerEdit = $_POST['trailerEdit'];
+        //Get embeed link video trailer
+        $searchEdit     = '/youtube\.com\/watch\?v=([a-zA-Z0-9]+)/smi';
+        $replaceEdit    = "youtube.com/embed/$1";
+        $urlEdit = preg_replace($searchEdit,$replaceEdit,$trailerEdit);
+        //End Get embeed link video trailer
+        uploadImgToFolder($_FILES['posterEdit']['tmp_name'],$_FILES['posterEdit']['name']);
+        //End Code up img to folder
+        if($posterEdit == './img/'){
+            echo "<script type='text/javascript'>alert('Vui lòng chọn poster cho phim');</script>";
+        }
+        else{
+            $sql_editFilm = mysqli_query($mysqli, "UPDATE `movie` 
+            SET `movie_name`='$filmNameEdit',`movie_directors`='$directorEdit',`movie_cast`='$actorEdit',`movie_cate`='$categoryFilmEdit',
+            `movie_date`='$dateEdit',`movie_time`='$timeEdit',`movie_language`='$languageEdit',`movie_rate`='$rateEdit',`movie_img`='$posterEdit',
+            `movie_decription`='$decriptionEdit',`movie_trailer`='$urlEdit' WHERE `movie_id`= '$idFilmEdit'");
+            echo "<script type='text/javascript'>alert('Chỉnh sửa thông tin phim thành công');</script>";
+
+        }
+    }
+    if(isset($_POST['deleteRowMovie'])){
+        $idRowMovie =  $_POST['idRowMovie'];
+        $sql_deleteShowing = mysqli_query($mysqli,"DELETE FROM `movie` WHERE `movie_id` = '$idRowMovie'");
+        echo "<script type='text/javascript'>alert('Xóa phim thành công');</script>";
+    }
     if(isset($_POST['addShowing'])){
         $addShowMovieName = $_POST['addShowingName'];
         $addShowRoom = $_POST['addShowingRoom'];
@@ -47,18 +133,7 @@
         $replace    = "youtube.com/embed/$1";
         $url = preg_replace($search,$replace,$trailer);
         //End Get embeed link video trailer
-        //Code up img to folder
-        $allow = array("jpg", "jpeg", "gif", "png");
-        $todir = 'img/';
-        if ( !!$_FILES['poster']['tmp_name'] )
-        {
-            $info = explode('.', strtolower( $_FILES['poster']['name']) ); // whats the extension of the file
-
-            if ( in_array( end($info), $allow) ) // is this file allowed
-            {
-                move_uploaded_file( $_FILES['poster']['tmp_name'], $todir . basename($_FILES['poster']['name'] ) );
-            }
-        }
+        uploadImgToFolder($_FILES['poster']['tmp_name'],$_FILES['poster']['name']);
         //End Code up img to folder
         if($poster == ''){
             echo "<script type='text/javascript'>alert('Vui lòng chọn poster cho phim');</script>";
@@ -107,6 +182,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="./summernote-0.8.16-dist/summernote.min.js"></script>
+    <link href="./summernote-0.8.16-dist/summernote.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/admin.css">
     <link rel="stylesheet" href="./fontawesome-free-5.13.0-web/css/all.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">

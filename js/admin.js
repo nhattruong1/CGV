@@ -55,7 +55,19 @@ $('.list-events').click(function() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("mainContent").innerHTML = this.responseText;
+            $('.dropdown-menu').click(function () {
+                $('#decriptionNewsAdd').summernote({
+                    tabsize: 4,
+                    height: 200
+                })
+            })
             $('#example').DataTable();
+            $('#example').on("click", ".edit-News",function () {
+                $('.decriptionNewsEdit').summernote({
+                    tabsize: 4,
+                    height: 200
+                })
+            });
         }
     };
     xmlhttp.open("POST","adminListNews.php",true);

@@ -77,6 +77,7 @@ include_once("db/connect.php");
                                     <label for="rate">Rated</label>
                                     <select class="form-control" id="rate" name="rate" >
                                         <option>C18 - PHIM CẤM KHÁN GIẢ DƯỚI 18 TUỔI</option>
+                                        <option>C16 - PHIM CẤM KHÁN GIẢ DƯỚI 16 TUỔI</option>
                                         <option>C13 - PHIM CẤM KHÁN GIẢ DƯỚI 13 TUỔI</option>
                                         <option>P - PHIM DÀNH CHO MỌI ĐỐI TƯỢNG</option>
                                     </select>
@@ -114,6 +115,7 @@ include_once("db/connect.php");
                 <th>Ngôn ngữ</th>
                 <th>Rated</th>
                 <th>Poster phim</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -131,6 +133,95 @@ include_once("db/connect.php");
                     <td><?php echo $row_listMovie['movie_language']; ?></td>
                     <td><?php echo $row_listMovie['movie_rate']; ?></td>
                     <td><?php echo '<img src="'.$row_listMovie['movie_img'].'" alt="" style = "display: inline;width: 100px;">'?></td>
+                    <td style="text-align: center;margin: auto 0">
+                        <div class="edit-Movie" style="display: inline;">
+                            <i class="far fa-edit" style="color: rgb(0,123,255)" data-toggle="modal" data-target="#editMovie<?php echo $stt ?>"></i>
+                            <!-- The Modal -->
+                            <div class="modal fade" id="editMovie<?php echo $stt ?>">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Phim: <?php echo $row_listMovie['movie_name']; ?></h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body" style="text-align: left">
+                                            <form method="post" enctype="multipart/form-data">
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="filmNameEdit">Tên phim</label>
+                                                        <input type="text" class="form-control" id="filmNameEdit" name = "filmNameEdit" placeholder="" value="<?php echo $row_listMovie['movie_name']; ?>" required="">
+                                                        <input type="text" class="form-control" id="idFilmEdit" name = "idFilmEdit" placeholder="" value="<?php echo $row_listMovie['movie_id']; ?>" hidden>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="directorEdit">Đạo diễn</label>
+                                                        <input type="text" class="form-control" id="directorEdit" name = "directorEdit" placeholder="" value="<?php echo $row_listMovie['movie_directors']; ?>" required="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="actorEdit">Diễn viên <span class="text-muted">(Vd: Nhật Trường, Ngọc Anh,...)</span></label>
+                                                    <input type="text" class="form-control" id="actorEdit" name = "actorEdit" value="<?php echo $row_listMovie['movie_cast']; ?>" required="">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="categoryFilmEdit">Thể loại phim <span class="text-muted">(Nhập tối đa 1 đến 3 thể loại của phim)</span></label>
+                                                    <input type="text" class="form-control" id="categoryFilmEdit" name = "categoryFilmEdit" placeholder="" value="<?php echo $row_listMovie['movie_cate']; ?>">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="dateEdit">Ngày công chiếu <span class="text-muted">(Định dạng YYYY-MM-DD)</span></label>
+                                                    <input type="text" class="form-control" id="dateEdit" name="dateEdit" placeholder="YYYY-MM-DD" required="" value="<?php echo $row_listMovie['movie_date']; ?>">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="timeEdit">Thời lượng phim <span class="text-muted">(Đổi sang phút vd: 182 phút)</span></label>
+                                                    <input type="text" class="form-control" id="timeEdit" name="timeEdit" placeholder="" value="<?php echo $row_listMovie['movie_time']; ?>">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="languageEdit">Ngôn ngữ <span class="text-muted">(vd: Tiếng Hàn và phụ đề tiếng Việt)</span></label>
+                                                    <input type="text" class="form-control" id="languageEdit" name="languageEdit" placeholder="" value="<?php echo $row_listMovie['movie_language']; ?>">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="rateEdit">Rated</label>
+                                                    <select class="form-control" id="rateEdit" name="rateEdit" >
+                                                        <option>C18 - PHIM CẤM KHÁN GIẢ DƯỚI 18 TUỔI</option>
+                                                        <option>C16 - PHIM CẤM KHÁN GIẢ DƯỚI 16 TUỔI</option>
+                                                        <option>C13 - PHIM CẤM KHÁN GIẢ DƯỚI 13 TUỔI</option>
+                                                        <option>P - PHIM DÀNH CHO MỌI ĐỐI TƯỢNG</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="posterEdit">Poster Phim <span class="text-muted">(*Lưu ý: ảnh 406x602px)</span></label>
+                                                    <input type="file" class="form-control-file" id="posterEdit" name="posterEdit">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="decriptionEdit">Nội dung phim <span class="text-muted">(vd: Tóm gọn trong 500 từ)</span></label>
+                                                    <textarea class="form-control" id="decriptionEdit" name="decriptionEdit" rows="4"  ><?php echo $row_listMovie['movie_decription']; ?></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="trailerEdit">Trailer Phim</label>
+                                                    <input type="text" class="form-control" id="trailerEdit" name="trailerEdit" placeholder="https://www.youtube.com/watch?v=o3ESQWArU2w" value="">
+                                                </div>
+                                                <hr class="mb-4">
+                                                <button class="btn btn-primary btn-lg btn-block" type="submit" name="FilmEdit">Cập Nhật</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="" style="display: inline" method="post">
+                            <input type="text" name="idRowMovie" value="<?php echo $row_listMovie['movie_id']; ?>" hidden>
+                            <button type="submit" name ="deleteRowMovie" style="border: 0;background-color: Transparent;">
+                                <i type = "submit" name ="deleteRowMovie" class="far fa-trash-alt" style="color: rgb(247,55,55)"></i>
+                            </button>
+                        </form>
+                    </td>
+
                 </tr>
                 <?php
             }
