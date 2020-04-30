@@ -4,15 +4,22 @@ $(document).ready(function() {
     type : 'POST', // type of the HTTP request
     success : function(data){
         var obj = jQuery.parseJSON(data);
-        console.log(obj);
+        var arrName = [];
+        var arrAmount = [];
+        obj.forEach((el) => {
+            arrName.push(el.name);
+        })
+        obj.forEach((el) => {
+            arrAmount.push(el.amount);
+        })
         var popCanvas = document.getElementById("myChart");
         var barChart = new Chart(popCanvas, {
             type: 'bar',
             data: {
-                labels: obj,
+                labels: arrName,
                 datasets: [{
                     label: '',
-                    data: [18, 23, 98, 2, 34,84],
+                    data: arrAmount,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.6)',
                         'rgba(54, 162, 235, 0.6)',

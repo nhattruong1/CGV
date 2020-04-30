@@ -2,12 +2,14 @@
 
 include_once("../db/connect.php");
 
-$sql = "SELECT DISTINCT `movie_name` FROM `showings`,movie WHERE showings_name_movie = movie_id";
+$sql = "SELECT COUNT(booking_id), movie_name
+FROM booking,movie WHERE movie_id = booking_movie
+GROUP BY movie_name";
 $result = mysqli_query($mysqli, $sql);
 $data = array();
 while ($enr = mysqli_fetch_assoc($result)) {
-    $a = $enr['movie_name'];
-    array_push($data, $a);
+    $dataArr = array('name' => $enr['movie_name'],'amount' => $enr['COUNT(booking_id)']);
+    array_push($data, $dataArr);
 }
 $myJSON = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 echo $myJSON;

@@ -8,6 +8,7 @@
     $sql_detail = mysqli_query($mysqli, "SELECT * FROM movie WHERE movie_id = '$id'");
     if(isset($_POST['booking'])){
         $_SESSION['ticket'] = $_POST['listTicket'];
+        $reserved = array();
         $arr = array_map('trim', explode(',', $_SESSION['ticket']));
         foreach ($arr as $seat) {
             $sql_getSeat = mysqli_query($mysqli, "UPDATE `seat`,room,theaters SET `seat_status`= 1 

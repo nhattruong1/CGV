@@ -13,7 +13,7 @@
                 move_uploaded_file( $valueTmp, $toDirEdit . basename($valueName) );
             }
         }
-    }
+    }   
     if(isset($_POST['deleteRowEvent'])){
         $idRowNews =  $_POST['idRowNews'];
         $sql_deleteShowing = mysqli_query($mysqli,"DELETE FROM `news` WHERE `news_id` = '$idRowNews'");
