@@ -1,19 +1,46 @@
 <?php
     include_once("db/connect.php");
     session_start();
-    function uploadImgToFolder($valueTmp,$valueName){
-        $allowEdit = array("jpg", "jpeg", "gif", "png");
-        $toDirEdit = 'img/';
-        if ( !!$valueTmp)
-        {
-            $info = explode('.', strtolower( $valueName) ); // whats the extension of the file
+//    function uploadImgToFolder($valueTmp,$valueName){
+//        $allowEdit = array("jpg", "jpeg", "gif", "png");
+//        $toDirEdit = 'img/';
+//        if ( !!$valueTmp)
+//        {
+//            $info = explode('.', strtolower( $valueName) ); // whats the extension of the file
+//
+//            if ( in_array( end($info), $allowEdit) ) // is this file allowed
+//            {
+//                move_uploaded_file( $valueTmp, $toDirEdit . basename($valueName) );
+//            }
+//        }
+//    }
+    function uploadImgToFolder($valueTmp){
+        $client_id = '2a2b91046de3a83';
 
-            if ( in_array( end($info), $allowEdit) ) // is this file allowed
-            {
-                move_uploaded_file( $valueTmp, $toDirEdit . basename($valueName) );
-            }
-        }
-    }   
+        $file = file_get_contents($valueTmp);
+
+        $url = 'https://api.imgur.com/3/image.json';
+        $headers = array("Authorization: Client-ID $client_id");
+        $pvars = array('image' => base64_encode($file));
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_POST => 1,
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_POSTFIELDS => $pvars
+        ));
+
+        $json_returned = curl_exec($curl); // blank response
+        $jsonDecode = json_decode($json_returned,true);
+        $link = array_column($jsonDecode, 'link');
+        $linkPicture =  $link[0];
+        curl_close($curl);
+        return $linkPicture;
+    }
     if(isset($_POST['deleteRowEvent'])){
         $idRowNews =  $_POST['idRowNews'];
         $sql_deleteShowing = mysqli_query($mysqli,"DELETE FROM `news` WHERE `news_id` = '$idRowNews'");
@@ -24,8 +51,8 @@
         $imgSNewsAdd = './img/'.$_FILES['imgSNewsAdd']['name'];
         $imgLNewsAdd = './img/'.$_FILES['imgLNewsAdd']['name'];
         $decriptionNewsAdd = $_POST['decriptionNewsAdd'];
-        uploadImgToFolder($_FILES['imgSNewsAdd']['tmp_name'],$_FILES['imgSNewsAdd']['name']);
-        uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name'],$_FILES['imgLNewsAdd']['name']);
+        $imgSNewsAdd = uploadImgToFolder($_FILES['imgSNewsAdd']['tmp_name']);
+        $imgLNewsAdd = uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name']);
 
         if($imgSNewsAdd == './img/' || $imgLNewsAdd == './img/'|| ($imgSNewsAdd == './img/' && $imgLNewsAdd == './img/')){
             echo "<script type='text/javascript'>alert('Vui lòng chọn ảnh cho sự kiện');</script>";
@@ -40,10 +67,9 @@
         $idNewsEdit = $_POST['idNewsEdit'];
         $nameNewsEdit = $_POST['nameNewsEdit'];
         $decriptionNewsEdit = $_POST['decriptionNewsEdit'];
-        $imgSNewsEdit = './img/'.$_FILES['imgSNewsEdit']['name'];
         $imgLNewsEdit = './img/'.$_FILES['imgLNewsEdit']['name'];
-        uploadImgToFolder($_FILES['imgSNewsEdit']['tmp_name'],$_FILES['imgSNewsEdit']['name']);
-        uploadImgToFolder($_FILES['imgLNewsEdit']['tmp_name'],$_FILES['imgLNewsEdit']['name']);
+        $imgSNewsEdit = uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name']);
+        $imgLNewsEdit = uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name']);
         if($imgSNewsEdit == './img/' || $imgLNewsEdit == './img/'|| ($imgSNewsEdit == './img/' && $imgLNewsEdit == './img/')){
             echo "<script type='text/javascript'>alert('Vui lòng chọn ảnh cho sự kiện');</script>";
         }else{
@@ -61,7 +87,6 @@
         $timeEdit = $_POST['timeEdit'];
         $languageEdit = $_POST['languageEdit'];
         $rateEdit = $_POST['rateEdit'];
-        $posterEdit = './img/'.$_FILES['posterEdit']['name'];
         $decriptionEdit = $_POST['decriptionEdit'];
         $trailerEdit = $_POST['trailerEdit'];
         //Get embeed link video trailer
@@ -69,7 +94,7 @@
         $replaceEdit    = "youtube.com/embed/$1";
         $urlEdit = preg_replace($searchEdit,$replaceEdit,$trailerEdit);
         //End Get embeed link video trailer
-        uploadImgToFolder($_FILES['posterEdit']['tmp_name'],$_FILES['posterEdit']['name']);
+        $posterEdit = uploadImgToFolder($_FILES['posterEdit']['tmp_name']);
         //End Code up img to folder
         if($posterEdit == './img/'){
             echo "<script type='text/javascript'>alert('Vui lòng chọn poster cho phim');</script>";
@@ -125,7 +150,6 @@
         $time = $_POST['time'];
         $language = $_POST['language'];
         $rate = $_POST['rate'];
-        $poster = './img/'.$_FILES['poster']['name'];
         $decription = $_POST['decription'];
         $trailer = $_POST['trailer'];
         //Get embeed link video trailer
@@ -133,7 +157,7 @@
         $replace    = "youtube.com/embed/$1";
         $url = preg_replace($search,$replace,$trailer);
         //End Get embeed link video trailer
-        uploadImgToFolder($_FILES['poster']['tmp_name'],$_FILES['poster']['name']);
+        $poster = uploadImgToFolder($_FILES['poster']['tmp_name']);
         //End Code up img to folder
         if($poster == ''){
             echo "<script type='text/javascript'>alert('Vui lòng chọn poster cho phim');</script>";

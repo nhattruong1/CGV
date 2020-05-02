@@ -2,6 +2,7 @@
     include_once("db/connect.php");
     session_start();
     $showingRoom = $_GET['showing'];
+    $_SESSION['idRoom'] = $showingRoom;
     $sql_ticketInfo = mysqli_query($mysqli, "SELECT * FROM `showings`,theaters,room,movie WHERE showings_name_movie = movie_id and showings_room = room_id and room_theater = theaters_id and showings_room = '$showingRoom'");
 ?>
 <!DOCTYPE html>

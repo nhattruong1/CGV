@@ -1,20 +1,31 @@
 <?php
-
 if(isset($_POST["submit"])) {
-    $allow = array("jpg", "jpeg", "gif", "png");
+    $client_id = '2a2b91046de3a83';
 
-    $todir = 'img/';
+    $file = file_get_contents($_FILES['fileToUpload']['tmp_name']);
 
-    if ( !!$_FILES['fileToUpload']['tmp_name'] )
-    {
-        $info = explode('.', strtolower( $_FILES['fileToUpload']['name']) ); // whats the extension of the file
+    $url = 'https://api.imgur.com/3/image.json';
+    $headers = array("Authorization: Client-ID $client_id");
+    $pvars = array('image' => base64_encode($file));
 
-        if ( in_array( end($info), $allow) ) // is this file allowed
-        {
-            move_uploaded_file( $_FILES['fileToUpload']['tmp_name'], $todir . basename($_FILES['fileToUpload']['name'] ) );
-            echo $_FILES['fileToUpload']['name'];
-        }
-    }
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $url,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_POST => 1,
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_HTTPHEADER => $headers,
+        CURLOPT_POSTFIELDS => $pvars
+    ));
+
+    $json_returned = curl_exec($curl); // blank response
+    $jsonDecode = json_decode($json_returned,true);
+    $link = array_column($jsonDecode, 'link');
+    $linkPicture =  $link[0];
+    echo $linkPicture;
+    curl_close($curl);
+
 }
 ?>
 <!DOCTYPE html>

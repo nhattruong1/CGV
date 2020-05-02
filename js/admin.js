@@ -6,12 +6,24 @@ $(document).ready(function() {
         var obj = jQuery.parseJSON(data);
         var arrName = [];
         var arrAmount = [];
+        var arrColor = [];
         obj.forEach((el) => {
             arrName.push(el.name);
         })
         obj.forEach((el) => {
             arrAmount.push(el.amount);
         })
+        function getRandomRgba() {
+            var num = Math.round(0xffffff * Math.random());
+            var r = num >> 16;
+            var g = num >> 8 & 255;
+            var b = num & 255;
+            return 'rgb(' + r + ', ' + g + ', ' + b + ',' + 0.6 +')';
+        }
+        obj.forEach((el) => {
+            arrColor.push(getRandomRgba());
+        })
+        console.log(arrColor)
         var popCanvas = document.getElementById("myChart");
         var barChart = new Chart(popCanvas, {
             type: 'bar',
@@ -20,14 +32,7 @@ $(document).ready(function() {
                 datasets: [{
                     label: '',
                     data: arrAmount,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)',
-                    ]
+                    backgroundColor: arrColor,
                 }]
             }
         });

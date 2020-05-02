@@ -11,10 +11,8 @@
         $reserved = array();
         $arr = array_map('trim', explode(',', $_SESSION['ticket']));
         foreach ($arr as $seat) {
-            $sql_getSeat = mysqli_query($mysqli, "UPDATE `seat`,room,theaters SET `seat_status`= 1 
-            WHERE `seat_room`= room_id and room_theater = theaters_id 
-            and seat_name = '$seat' and theaters_id = '".$_SESSION['theaterName']."' 
-            and room_name = '".$_SESSION['typeTicket']."'");
+            $sql_getSeat = mysqli_query($mysqli, "UPDATE `seat` SET `seat_status`= 1 
+            WHERE `seat_room`= '".$_SESSION['idRoom']."' and seat_name = '$seat'");
             $sql_insertBookingHis = mysqli_query($mysqli, "INSERT INTO `booking` (`booking_id`, `booking_user`, `booking_movie`, `booking_theater`, `booking_seat`, `booking_ticket`, `booking_time`) 
             VALUES (NULL, '".$_SESSION['idUser']."', '".$_SESSION['IDMovie']."', '".$_SESSION['theaterName']."', '$seat', '".$_SESSION['ticketName']."', NOW())");
         }
