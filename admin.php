@@ -65,7 +65,7 @@
         $idNewsEdit = $_POST['idNewsEdit'];
         $nameNewsEdit = $_POST['nameNewsEdit'];
         $decriptionNewsEdit = $_POST['decriptionNewsEdit'];
-        $imgSNewsEdit = uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name']);
+        $imgSNewsEdit = uploadImgToFolder($_FILES['imgSNewsAdd']['tmp_name']);
         $imgLNewsEdit = uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name']);
         if($imgSNewsEdit == './img/' || $imgLNewsEdit == './img/'|| ($imgSNewsEdit == './img/' && $imgLNewsEdit == './img/')){
             echo "<script type='text/javascript'>alert('Vui lòng chọn ảnh cho sự kiện');</script>";
