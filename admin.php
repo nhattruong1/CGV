@@ -48,8 +48,6 @@
     }
     if ((isset($_POST['addNews']))){
         $nameNewsAdd = $_POST['nameNewsAdd'];
-        $imgSNewsAdd = './img/'.$_FILES['imgSNewsAdd']['name'];
-        $imgLNewsAdd = './img/'.$_FILES['imgLNewsAdd']['name'];
         $decriptionNewsAdd = $_POST['decriptionNewsAdd'];
         $imgSNewsAdd = uploadImgToFolder($_FILES['imgSNewsAdd']['tmp_name']);
         $imgLNewsAdd = uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name']);
@@ -67,7 +65,6 @@
         $idNewsEdit = $_POST['idNewsEdit'];
         $nameNewsEdit = $_POST['nameNewsEdit'];
         $decriptionNewsEdit = $_POST['decriptionNewsEdit'];
-        $imgLNewsEdit = './img/'.$_FILES['imgLNewsEdit']['name'];
         $imgSNewsEdit = uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name']);
         $imgLNewsEdit = uploadImgToFolder($_FILES['imgLNewsAdd']['tmp_name']);
         if($imgSNewsEdit == './img/' || $imgLNewsEdit == './img/'|| ($imgSNewsEdit == './img/' && $imgLNewsEdit == './img/')){
