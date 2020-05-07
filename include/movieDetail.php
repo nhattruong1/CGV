@@ -5,21 +5,36 @@
         $id = '';
     }
     $_SESSION['IDMovie'] = $id;
-    $sql_detail = mysqli_query($mysqli, "SELECT * FROM movie WHERE movie_id = '$id'");
     if(isset($_POST['booking'])){
         $_SESSION['ticket'] = $_POST['listTicket'];
         $reserved = array();
         $arr = array_map('trim', explode(',', $_SESSION['ticket']));
         foreach ($arr as $seat) {
-            $sql_getSeat = mysqli_query($mysqli, "UPDATE `seat` SET `seat_status`= 1 
-            WHERE `seat_room`= '".$_SESSION['idRoom']."' and seat_name = '$seat'");
-            $sql_insertBookingHis = mysqli_query($mysqli, "INSERT INTO `booking` (`booking_id`, `booking_user`, `booking_movie`, `booking_theater`, `booking_seat`, `booking_ticket`, `booking_time`) 
-            VALUES (NULL, '".$_SESSION['idUser']."', '".$_SESSION['IDMovie']."', '".$_SESSION['theaterName']."', '$seat', '".$_SESSION['ticketName']."', NOW())");
+            $sql_checkReserved = mysqli_query($mysqli, "SELECT * FROM `seat` 
+            WHERE `seat_name` = '$seat' and `seat_room` = '".$_SESSION['idRoom']."' and `seat_status` = 1");
+            $checkReserved = mysqli_num_rows($sql_checkReserved);
+            if($checkReserved == 1){
+                array_push($reserved,$seat);
+            }else{
+                $sql_getSeat = mysqli_query($mysqli, "UPDATE `seat` SET `seat_status`= 1 
+                WHERE `seat_room`= '".$_SESSION['idRoom']."' and seat_name = '$seat'");
+                $sql_insertBookingHis = mysqli_query($mysqli, "INSERT INTO `booking` (`booking_id`, `booking_user`, `booking_movie`, `booking_theater`, `booking_seat`, `booking_ticket`, `booking_time`) 
+                VALUES (NULL, '".$_SESSION['idUser']."', '".$_SESSION['IDMovie']."', '".$_SESSION['theaterName']."', '$seat', '".$_SESSION['ticketName']."', NOW())");
+            }
+        }
+        if (empty($reserved)) {
+            echo "<script type='text/javascript'>alert('Đặt vé thành công, vui lòng kiểm tra lịch sử đặt vé.');</script>";
+        }else{
+            $reservedString = implode(", ",$reserved);
+            echo "<script type='text/javascript'>alert('Ghế $reservedString. đã có người đặt');</script>";
+
         }
     }
 
 ?>
 <?php
+    $sql_detail = mysqli_query($mysqli, "SELECT * FROM movie WHERE movie_id = '$id'");
+
     while($detail = mysqli_fetch_array($sql_detail)){
         $myinput= $detail['movie_date'];
         $sqldate= date('d/m/Y',strtotime($myinput))
