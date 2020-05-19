@@ -26,6 +26,32 @@
     <link rel="stylesheet" href="./css/user.css">
 </head>
 <body>
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            xfbml            : true,
+            version          : 'v7.0'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your customer chat code -->
+<div class="fb-customerchat"
+     attribution=setup_tool
+     page_id="111493383903916"
+     theme_color="#fa3c4c"
+     logged_in_greeting="Xin chào, tôi có thể giúp gì cho bạn"
+     logged_out_greeting="Xin chào, tôi có thể giúp gì cho bạn">
+</div>
     <?php
         include("include/header.php");
         if(isset($_GET['controller'])){
@@ -63,6 +89,7 @@
             include("include/slider.php");
             include('include/home.php');
         }
+
         include("include/footer.php");
     ?>
     <!-- partial -->
