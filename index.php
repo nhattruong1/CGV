@@ -44,11 +44,11 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
-<!-- Your customer chat code -->
+<!-- Your Chat Plugin code -->
 <div class="fb-customerchat"
      attribution=setup_tool
      page_id="111493383903916"
-     theme_color="#E71A0F"
+     theme_color="#fa3c4c"
      logged_in_greeting="Xin chào, tôi có thể giúp gì cho bạn"
      logged_out_greeting="Xin chào, tôi có thể giúp gì cho bạn">
 </div>
