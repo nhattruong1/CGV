@@ -3,6 +3,7 @@ require './vendor/autoload.php';
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\DriverManager;
+use BotMan\Drivers\Facebook\FacebookDriver;
 
 $config = [
     'facebook' => [
@@ -13,15 +14,15 @@ $config = [
 ];
 
 // Load the driver(s) you want to use
-DriverManager::loadDriver(\BotMan\Drivers\Facebook\FacebookDriver::class);
+DriverManager::loadDriver(FacebookDriver::class);
 
 // Create an instance
-$botman = BotManFactory::create($config);
+$botMan = BotManFactory::create($config);
 
 // Give the bot something to listen for.
-$botman->hears('hello', function (BotMan $bot) {
-    $bot->reply('Hello yourself.');
+$botMan->hears('xin chào', function (BotMan $bot) {
+    $bot->reply('Xin chào, nếu bạn muốn xem danh sách phim đang chiếu vui lòng nhắn "Lịch chiếu Phim"');
 });
 
 // Start listening
-$botman->listen();
+$botMan->listen();
