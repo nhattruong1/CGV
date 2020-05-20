@@ -23,6 +23,9 @@ $botMan = BotManFactory::create($config);
 $botMan->hears('xin chào', function (BotMan $bot) {
     $bot->reply('Xin chào, nếu bạn muốn xem danh sách phim đang chiếu vui lòng nhắn "Lịch chiếu Phim"');
 });
-
+$botMan->hears('Lịch chiếu Phim', function (BotMan $bot) {
+    $a = 'Chưa có gì đâu bro';
+    $bot->reply($a);
+});
 // Start listening
 $botMan->listen();
