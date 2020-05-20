@@ -1,43 +1,27 @@
 <?php
+require './vendor/autoload.php';
+use BotMan\BotMan\BotMan;
+use BotMan\BotMan\BotManFactory;
+use BotMan\BotMan\Drivers\DriverManager;
 
-/* validate verify token needed for setting up web hook */
-if (isset($_GET['hub_verify_token'])) {
-    if ($_GET['hub_verify_token'] === '123') {
-        echo $_GET['hub_challenge'];
-        return;
-    } else {
-        echo 'Invalid Verify Token';
-        return;
-    }
-}
+$config = [
+    'facebook' => [
+        'token' => 'EAAWzMyERZAhUBAFSZCwRO1HWxuc0r4ImBZAFkvPcvymIZAlv8XYxove0rOZCpSseNZCn2ZAAkFvl9a4mYhCPlG0ml9kkG0Vx3ZCrfVrBwBaYnx2fKIq8FaCKEa5YcxiiOpptBUU3GZCLfpkeYGtEQzhfgiQnbsK0PfNRByZBE8KpdFHgZDZD',
+        'app_secret' => 'ed899bfb7c041ce2bb66226eea515cc4',
+        'verification'=>'123',
+    ]
+];
 
-/* receive and send messages */
-$input = json_decode(file_get_contents('php://input'), true);
-if (isset($input['entry'][0]['messaging'][0]['sender']['id'])) {
+// Load the driver(s) you want to use
+DriverManager::loadDriver(\BotMan\Drivers\Facebook\FacebookDriver::class);
 
-    $sender = $input['entry'][0]['messaging'][0]['sender']['id']; //sender facebook id
-    $message = $input['entry'][0]['messaging'][0]['message']['text']; //text that user sent
+// Create an instance
+$botman = BotManFactory::create($config);
 
-    $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=EAAOmDpUUZAbkBALFl2ASmRsZCHYhxkGsDVicBOEobm7eaD4B0SnolvPpQwwg2wWA0c4UbZBqEP1UD9kEv9EEDBfCahrEPfiGVo3lFNJWUlaMJPZAJIZArZAedIs0GZBXgZCo3ljxQ1Gmm7tDa7lYvmG6FghJIESASARR6kor0ZBkQoQZDZD';
+// Give the bot something to listen for.
+$botman->hears('hello', function (BotMan $bot) {
+    $bot->reply('Hello yourself.');
+});
 
-    /*initialize curl*/
-    $ch = curl_init($url);
-    /*prepare response*/
-    $jsonData = '{
-    "recipient":{
-        "id":"' . $sender . '"
-        },
-        "message":{
-            "text":"You said, ' . $message . '"
-        }
-    }';
-    /* curl setting to send a json post data */
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-    if (!empty($message)) {
-        $result = curl_exec($ch); // user will get the message
-    }
-}
-
-?>
+// Start listening
+$botman->listen();
